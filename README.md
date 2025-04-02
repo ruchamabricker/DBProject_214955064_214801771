@@ -312,13 +312,5 @@ The manager searches for a team, edits the player list, and clicks "Update."
 
 ---
 
-License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-
-
-הטקסט מעודכן בפורמט שמתאים לקריאה ב-README של GitHub. אם יש לך שינויים נוספים או התאמות שתרצי להוסיף, אני כאן!
-
 
 
