@@ -1,0 +1,1369 @@
+match_id,player_id,event_type,minute
+1,1,Red Card,2
+1,2,Substitution,3
+1,3,Goal,4
+1,4,Yellow Card,5
+1,5,Red Card,6
+1,6,Substitution,7
+1,7,Goal,8
+1,8,Yellow Card,9
+1,9,Red Card,10
+1,10,Substitution,11
+1,11,Goal,12
+1,12,Yellow Card,13
+1,13,Red Card,14
+1,14,Substitution,15
+1,15,Goal,16
+1,16,Yellow Card,17
+1,17,Red Card,18
+1,18,Substitution,19
+1,19,Goal,20
+1,20,Yellow Card,21
+1,21,Red Card,22
+1,22,Substitution,23
+2,23,Yellow Card,47
+2,24,Red Card,49
+2,25,Substitution,51
+2,26,Goal,53
+2,27,Yellow Card,55
+2,28,Red Card,57
+2,29,Substitution,59
+2,30,Goal,61
+2,31,Yellow Card,63
+2,32,Red Card,65
+2,33,Substitution,67
+2,34,Goal,69
+2,35,Yellow Card,71
+2,36,Red Card,73
+2,37,Substitution,75
+2,38,Goal,77
+2,39,Yellow Card,79
+2,40,Red Card,81
+2,41,Substitution,83
+2,42,Goal,85
+2,43,Yellow Card,87
+2,44,Red Card,89
+3,45,Goal,46
+3,46,Yellow Card,49
+3,47,Red Card,52
+3,48,Substitution,55
+3,49,Goal,58
+3,50,Yellow Card,61
+3,51,Red Card,64
+3,52,Substitution,67
+3,53,Goal,70
+3,54,Yellow Card,73
+3,55,Red Card,76
+3,56,Substitution,79
+3,57,Goal,82
+3,58,Yellow Card,85
+3,59,Red Card,88
+3,60,Substitution,1
+3,61,Goal,4
+3,62,Yellow Card,7
+3,63,Red Card,10
+3,64,Substitution,13
+3,65,Goal,16
+3,66,Yellow Card,19
+4,67,Substitution,89
+4,68,Goal,3
+4,69,Yellow Card,7
+4,70,Red Card,11
+4,71,Substitution,15
+4,72,Goal,19
+4,73,Yellow Card,23
+4,74,Red Card,27
+4,75,Substitution,31
+4,76,Goal,35
+4,77,Yellow Card,39
+4,78,Red Card,43
+4,79,Substitution,47
+4,80,Goal,51
+4,81,Yellow Card,55
+4,82,Red Card,59
+4,83,Substitution,63
+4,84,Goal,67
+4,85,Yellow Card,71
+4,86,Red Card,75
+4,87,Substitution,79
+4,88,Goal,83
+5,89,Red Card,86
+5,90,Substitution,1
+5,91,Goal,6
+5,92,Yellow Card,11
+5,93,Red Card,16
+5,94,Substitution,21
+5,95,Goal,26
+5,96,Yellow Card,31
+5,97,Red Card,36
+5,98,Substitution,41
+5,99,Goal,46
+5,100,Yellow Card,51
+5,101,Red Card,56
+5,102,Substitution,61
+5,103,Goal,66
+5,104,Yellow Card,71
+5,105,Red Card,76
+5,106,Substitution,81
+5,107,Goal,86
+5,108,Yellow Card,1
+5,109,Red Card,6
+5,110,Substitution,11
+6,111,Yellow Card,37
+6,112,Red Card,43
+6,113,Substitution,49
+6,114,Goal,55
+6,115,Yellow Card,61
+6,116,Red Card,67
+6,117,Substitution,73
+6,118,Goal,79
+6,119,Yellow Card,85
+6,120,Red Card,1
+6,121,Substitution,7
+6,122,Goal,13
+6,123,Yellow Card,19
+6,124,Red Card,25
+6,125,Substitution,31
+6,126,Goal,37
+6,127,Yellow Card,43
+6,128,Red Card,49
+6,129,Substitution,55
+6,130,Goal,61
+6,131,Yellow Card,67
+6,132,Red Card,73
+7,133,Goal,32
+7,134,Yellow Card,39
+7,135,Red Card,46
+7,136,Substitution,53
+7,137,Goal,60
+7,138,Yellow Card,67
+7,139,Red Card,74
+7,140,Substitution,81
+7,141,Goal,88
+7,142,Yellow Card,5
+7,143,Red Card,12
+7,144,Substitution,19
+7,145,Goal,26
+7,146,Yellow Card,33
+7,147,Red Card,40
+7,148,Substitution,47
+7,149,Goal,54
+7,150,Yellow Card,61
+7,151,Red Card,68
+7,152,Substitution,75
+7,153,Goal,82
+7,154,Yellow Card,89
+8,155,Substitution,71
+8,156,Goal,79
+8,157,Yellow Card,87
+8,158,Red Card,5
+8,159,Substitution,13
+8,160,Goal,21
+8,161,Yellow Card,29
+8,162,Red Card,37
+8,163,Substitution,45
+8,164,Goal,53
+8,165,Yellow Card,61
+8,166,Red Card,69
+8,167,Substitution,77
+8,168,Goal,85
+8,169,Yellow Card,3
+8,170,Red Card,11
+8,171,Substitution,19
+8,172,Goal,27
+8,173,Yellow Card,35
+8,174,Red Card,43
+8,175,Substitution,51
+8,176,Goal,59
+9,177,Red Card,64
+9,178,Substitution,73
+9,179,Goal,82
+9,180,Yellow Card,1
+9,181,Red Card,10
+9,182,Substitution,19
+9,183,Goal,28
+9,184,Yellow Card,37
+9,185,Red Card,46
+9,186,Substitution,55
+9,187,Goal,64
+9,188,Yellow Card,73
+9,189,Red Card,82
+9,190,Substitution,1
+9,191,Goal,10
+9,192,Yellow Card,19
+9,193,Red Card,28
+9,194,Substitution,37
+9,195,Goal,46
+9,196,Yellow Card,55
+9,197,Red Card,64
+9,198,Substitution,73
+10,199,Yellow Card,11
+10,200,Red Card,21
+10,201,Substitution,31
+10,202,Goal,41
+10,203,Yellow Card,51
+10,204,Red Card,61
+10,205,Substitution,71
+10,206,Goal,81
+10,207,Yellow Card,1
+10,208,Red Card,11
+10,209,Substitution,21
+10,210,Goal,31
+10,211,Yellow Card,41
+10,212,Red Card,51
+10,213,Substitution,61
+10,214,Goal,71
+10,215,Yellow Card,81
+10,216,Red Card,1
+10,217,Substitution,11
+10,218,Goal,21
+10,219,Yellow Card,31
+10,220,Red Card,41
+11,221,Goal,2
+11,222,Yellow Card,13
+11,223,Red Card,24
+11,224,Substitution,35
+11,225,Goal,46
+11,226,Yellow Card,57
+11,227,Red Card,68
+11,228,Substitution,79
+11,229,Goal,90
+11,230,Yellow Card,11
+11,231,Red Card,22
+11,232,Substitution,33
+11,233,Goal,44
+11,234,Yellow Card,55
+11,235,Red Card,66
+11,236,Substitution,77
+11,237,Goal,88
+11,238,Yellow Card,9
+11,239,Red Card,20
+11,240,Substitution,31
+11,241,Goal,42
+11,242,Yellow Card,53
+12,243,Substitution,37
+12,244,Goal,49
+12,245,Yellow Card,61
+12,246,Red Card,73
+12,247,Substitution,85
+12,248,Goal,7
+12,249,Yellow Card,19
+12,250,Red Card,31
+12,251,Substitution,43
+12,252,Goal,55
+12,253,Yellow Card,67
+12,254,Red Card,79
+12,255,Substitution,1
+12,256,Goal,13
+12,257,Yellow Card,25
+12,258,Red Card,37
+12,259,Substitution,49
+12,260,Goal,61
+12,261,Yellow Card,73
+12,262,Red Card,85
+12,263,Substitution,7
+12,264,Goal,19
+13,265,Red Card,26
+13,266,Substitution,39
+13,267,Goal,52
+13,268,Yellow Card,65
+13,269,Red Card,78
+13,270,Substitution,1
+13,271,Goal,14
+13,272,Yellow Card,27
+13,273,Red Card,40
+13,274,Substitution,53
+13,275,Goal,66
+13,276,Yellow Card,79
+13,277,Red Card,2
+13,278,Substitution,15
+13,279,Goal,28
+13,280,Yellow Card,41
+13,281,Red Card,54
+13,282,Substitution,67
+13,283,Goal,80
+13,284,Yellow Card,3
+13,285,Red Card,16
+13,286,Substitution,29
+14,287,Yellow Card,59
+14,288,Red Card,73
+14,289,Substitution,87
+14,290,Goal,11
+14,291,Yellow Card,25
+14,292,Red Card,39
+14,293,Substitution,53
+14,294,Goal,67
+14,295,Yellow Card,81
+14,296,Red Card,5
+14,297,Substitution,19
+14,298,Goal,33
+14,299,Yellow Card,47
+14,300,Red Card,61
+14,301,Substitution,75
+14,302,Goal,89
+14,303,Yellow Card,13
+14,304,Red Card,27
+14,305,Substitution,41
+14,306,Goal,55
+14,307,Yellow Card,69
+14,308,Red Card,83
+15,309,Goal,46
+15,310,Yellow Card,61
+15,311,Red Card,76
+15,312,Substitution,1
+15,313,Goal,16
+15,314,Yellow Card,31
+15,315,Red Card,46
+15,316,Substitution,61
+15,317,Goal,76
+15,318,Yellow Card,1
+15,319,Red Card,16
+15,320,Substitution,31
+15,321,Goal,46
+15,322,Yellow Card,61
+15,323,Red Card,76
+15,324,Substitution,1
+15,325,Goal,16
+15,326,Yellow Card,31
+15,327,Red Card,46
+15,328,Substitution,61
+15,329,Goal,76
+15,330,Yellow Card,1
+16,331,Substitution,77
+16,332,Goal,3
+16,333,Yellow Card,19
+16,334,Red Card,35
+16,335,Substitution,51
+16,336,Goal,67
+16,337,Yellow Card,83
+16,338,Red Card,9
+16,339,Substitution,25
+16,340,Goal,41
+16,341,Yellow Card,57
+16,342,Red Card,73
+16,343,Substitution,89
+16,344,Goal,15
+16,345,Yellow Card,31
+16,346,Red Card,47
+16,347,Substitution,63
+16,348,Goal,79
+16,349,Yellow Card,5
+16,350,Red Card,21
+16,351,Substitution,37
+16,352,Goal,53
+17,353,Red Card,62
+17,354,Substitution,79
+17,355,Goal,6
+17,356,Yellow Card,23
+17,357,Red Card,40
+17,358,Substitution,57
+17,359,Goal,74
+17,360,Yellow Card,1
+17,361,Red Card,18
+17,362,Substitution,35
+17,363,Goal,52
+17,364,Yellow Card,69
+17,365,Red Card,86
+17,366,Substitution,13
+17,367,Goal,30
+17,368,Yellow Card,47
+17,369,Red Card,64
+17,370,Substitution,81
+17,371,Goal,8
+17,372,Yellow Card,25
+17,373,Red Card,42
+17,374,Substitution,59
+18,375,Yellow Card,1
+18,376,Red Card,19
+18,377,Substitution,37
+18,378,Goal,55
+18,379,Yellow Card,73
+18,380,Red Card,1
+18,381,Substitution,19
+18,382,Goal,37
+18,383,Yellow Card,55
+18,384,Red Card,73
+18,385,Substitution,1
+18,386,Goal,19
+18,387,Yellow Card,37
+18,388,Red Card,55
+18,389,Substitution,73
+18,390,Goal,1
+18,391,Yellow Card,19
+18,392,Red Card,37
+18,393,Substitution,55
+18,394,Goal,73
+18,395,Yellow Card,1
+18,396,Red Card,19
+19,397,Goal,74
+19,398,Yellow Card,3
+19,399,Red Card,22
+19,400,Substitution,41
+19,401,Goal,60
+19,402,Yellow Card,79
+19,403,Red Card,8
+19,404,Substitution,27
+19,405,Goal,46
+19,406,Yellow Card,65
+19,407,Red Card,84
+19,408,Substitution,13
+19,409,Goal,32
+19,410,Yellow Card,51
+19,411,Red Card,70
+19,412,Substitution,89
+19,413,Goal,18
+19,414,Yellow Card,37
+19,415,Red Card,56
+19,416,Substitution,75
+19,417,Goal,4
+19,418,Yellow Card,23
+20,419,Substitution,11
+20,420,Goal,31
+20,421,Yellow Card,51
+20,422,Red Card,71
+20,423,Substitution,1
+20,424,Goal,21
+20,425,Yellow Card,41
+20,426,Red Card,61
+20,427,Substitution,81
+20,428,Goal,11
+20,429,Yellow Card,31
+20,430,Red Card,51
+20,431,Substitution,71
+20,432,Goal,1
+20,433,Yellow Card,21
+20,434,Red Card,41
+20,435,Substitution,61
+20,436,Goal,81
+20,437,Yellow Card,11
+20,438,Red Card,31
+20,439,Substitution,51
+20,440,Goal,71
+21,441,Red Card,82
+21,442,Substitution,13
+21,443,Goal,34
+21,444,Yellow Card,55
+21,445,Red Card,76
+21,446,Substitution,7
+21,447,Goal,28
+21,448,Yellow Card,49
+21,449,Red Card,70
+21,450,Substitution,1
+21,451,Goal,22
+21,452,Yellow Card,43
+21,453,Red Card,64
+21,454,Substitution,85
+21,455,Goal,16
+21,456,Yellow Card,37
+21,457,Red Card,58
+21,458,Substitution,79
+21,459,Goal,10
+21,460,Yellow Card,31
+21,461,Red Card,52
+21,462,Substitution,73
+22,463,Yellow Card,17
+22,464,Red Card,39
+22,465,Substitution,61
+22,466,Goal,83
+22,467,Yellow Card,15
+22,468,Red Card,37
+22,469,Substitution,59
+22,470,Goal,81
+22,471,Yellow Card,13
+22,472,Red Card,35
+22,473,Substitution,57
+22,474,Goal,79
+22,475,Yellow Card,11
+22,476,Red Card,33
+22,477,Substitution,55
+22,478,Goal,77
+22,479,Yellow Card,9
+22,480,Red Card,31
+22,481,Substitution,53
+22,482,Goal,75
+22,483,Yellow Card,7
+22,484,Red Card,29
+23,485,Goal,86
+23,486,Yellow Card,19
+23,487,Red Card,42
+23,488,Substitution,65
+23,489,Goal,88
+23,490,Yellow Card,21
+23,491,Red Card,44
+23,492,Substitution,67
+23,493,Goal,90
+23,494,Yellow Card,23
+23,495,Red Card,46
+23,496,Substitution,69
+23,497,Goal,2
+23,498,Yellow Card,25
+23,499,Red Card,48
+23,500,Substitution,71
+24,7,Substitution,79
+24,8,Goal,13
+24,9,Yellow Card,37
+24,10,Red Card,61
+24,11,Substitution,85
+24,12,Goal,19
+24,13,Yellow Card,43
+24,14,Red Card,67
+24,15,Substitution,1
+24,16,Goal,25
+24,17,Yellow Card,49
+24,18,Red Card,73
+24,19,Substitution,7
+24,20,Goal,31
+24,21,Yellow Card,55
+24,22,Red Card,79
+24,23,Substitution,13
+24,24,Goal,37
+24,25,Yellow Card,61
+24,26,Red Card,85
+24,27,Substitution,19
+24,28,Goal,43
+25,29,Red Card,6
+25,30,Substitution,31
+25,31,Goal,56
+25,32,Yellow Card,81
+25,33,Red Card,16
+25,34,Substitution,41
+25,35,Goal,66
+25,36,Yellow Card,1
+25,37,Red Card,26
+25,38,Substitution,51
+25,39,Goal,76
+25,40,Yellow Card,11
+25,41,Red Card,36
+25,42,Substitution,61
+25,43,Goal,86
+25,44,Yellow Card,21
+25,45,Red Card,46
+25,46,Substitution,71
+25,47,Goal,6
+25,48,Yellow Card,31
+25,49,Red Card,56
+25,50,Substitution,81
+26,51,Yellow Card,67
+26,52,Red Card,3
+26,53,Substitution,29
+26,54,Goal,55
+26,55,Yellow Card,81
+26,56,Red Card,17
+26,57,Substitution,43
+26,58,Goal,69
+26,59,Yellow Card,5
+26,60,Red Card,31
+26,61,Substitution,57
+26,62,Goal,83
+26,63,Yellow Card,19
+26,64,Red Card,45
+26,65,Substitution,71
+26,66,Goal,7
+26,67,Yellow Card,33
+26,68,Red Card,59
+26,69,Substitution,85
+26,70,Goal,21
+26,71,Yellow Card,47
+26,72,Red Card,73
+27,73,Goal,82
+27,74,Yellow Card,19
+27,75,Red Card,46
+27,76,Substitution,73
+27,77,Goal,10
+27,78,Yellow Card,37
+27,79,Red Card,64
+27,80,Substitution,1
+27,81,Goal,28
+27,82,Yellow Card,55
+27,83,Red Card,82
+27,84,Substitution,19
+27,85,Goal,46
+27,86,Yellow Card,73
+27,87,Red Card,10
+27,88,Substitution,37
+27,89,Goal,64
+27,90,Yellow Card,1
+27,91,Red Card,28
+27,92,Substitution,55
+27,93,Goal,82
+27,94,Yellow Card,19
+28,95,Substitution,51
+28,96,Goal,79
+28,97,Yellow Card,17
+28,98,Red Card,45
+28,99,Substitution,73
+28,100,Goal,11
+28,101,Yellow Card,39
+28,102,Red Card,67
+28,103,Substitution,5
+28,104,Goal,33
+28,105,Yellow Card,61
+28,106,Red Card,89
+28,107,Substitution,27
+28,108,Goal,55
+28,109,Yellow Card,83
+28,110,Red Card,21
+28,111,Substitution,49
+28,112,Goal,77
+28,113,Yellow Card,15
+28,114,Red Card,43
+28,115,Substitution,71
+28,116,Goal,9
+29,117,Red Card,64
+29,118,Substitution,3
+29,119,Goal,32
+29,120,Yellow Card,61
+29,121,Red Card,90
+29,122,Substitution,29
+29,123,Goal,58
+29,124,Yellow Card,87
+29,125,Red Card,26
+29,126,Substitution,55
+29,127,Goal,84
+29,128,Yellow Card,23
+29,129,Red Card,52
+29,130,Substitution,81
+29,131,Goal,20
+29,132,Yellow Card,49
+29,133,Red Card,78
+29,134,Substitution,17
+29,135,Goal,46
+29,136,Yellow Card,75
+29,137,Red Card,14
+29,138,Substitution,43
+30,139,Yellow Card,31
+30,140,Red Card,61
+30,141,Substitution,1
+30,142,Goal,31
+30,143,Yellow Card,61
+30,144,Red Card,1
+30,145,Substitution,31
+30,146,Goal,61
+30,147,Yellow Card,1
+30,148,Red Card,31
+30,149,Substitution,61
+30,150,Goal,1
+30,151,Yellow Card,31
+30,152,Red Card,61
+30,153,Substitution,1
+30,154,Goal,31
+30,155,Yellow Card,61
+30,156,Red Card,1
+30,157,Substitution,31
+30,158,Goal,61
+30,159,Yellow Card,1
+30,160,Red Card,31
+31,161,Goal,42
+31,162,Yellow Card,73
+31,163,Red Card,14
+31,164,Substitution,45
+31,165,Goal,76
+31,166,Yellow Card,17
+31,167,Red Card,48
+31,168,Substitution,79
+31,169,Goal,20
+31,170,Yellow Card,51
+31,171,Red Card,82
+31,172,Substitution,23
+31,173,Goal,54
+31,174,Yellow Card,85
+31,175,Red Card,26
+31,176,Substitution,57
+31,177,Goal,88
+31,178,Yellow Card,29
+31,179,Red Card,60
+31,180,Substitution,1
+31,181,Goal,32
+31,182,Yellow Card,63
+32,183,Substitution,7
+32,184,Goal,39
+32,185,Yellow Card,71
+32,186,Red Card,13
+32,187,Substitution,45
+32,188,Goal,77
+32,189,Yellow Card,19
+32,190,Red Card,51
+32,191,Substitution,83
+32,192,Goal,25
+32,193,Yellow Card,57
+32,194,Red Card,89
+32,195,Substitution,31
+32,196,Goal,63
+32,197,Yellow Card,5
+32,198,Red Card,37
+32,199,Substitution,69
+32,200,Goal,11
+32,201,Yellow Card,43
+32,202,Red Card,75
+32,203,Substitution,17
+32,204,Goal,49
+33,205,Red Card,16
+33,206,Substitution,49
+33,207,Goal,82
+33,208,Yellow Card,25
+33,209,Red Card,58
+33,210,Substitution,1
+33,211,Goal,34
+33,212,Yellow Card,67
+33,213,Red Card,10
+33,214,Substitution,43
+33,215,Goal,76
+33,216,Yellow Card,19
+33,217,Red Card,52
+33,218,Substitution,85
+33,219,Goal,28
+33,220,Yellow Card,61
+33,221,Red Card,4
+33,222,Substitution,37
+33,223,Goal,70
+33,224,Yellow Card,13
+33,225,Red Card,46
+33,226,Substitution,79
+34,227,Yellow Card,69
+34,228,Red Card,13
+34,229,Substitution,47
+34,230,Goal,81
+34,231,Yellow Card,25
+34,232,Red Card,59
+34,233,Substitution,3
+34,234,Goal,37
+34,235,Yellow Card,71
+34,236,Red Card,15
+34,237,Substitution,49
+34,238,Goal,83
+34,239,Yellow Card,27
+34,240,Red Card,61
+34,241,Substitution,5
+34,242,Goal,39
+34,243,Yellow Card,73
+34,244,Red Card,17
+34,245,Substitution,51
+34,246,Goal,85
+34,247,Yellow Card,29
+34,248,Red Card,63
+35,249,Goal,76
+35,250,Yellow Card,21
+35,251,Red Card,56
+35,252,Substitution,1
+35,253,Goal,36
+35,254,Yellow Card,71
+35,255,Red Card,16
+35,256,Substitution,51
+35,257,Goal,86
+35,258,Yellow Card,31
+35,259,Red Card,66
+35,260,Substitution,11
+35,261,Goal,46
+35,262,Yellow Card,81
+35,263,Red Card,26
+35,264,Substitution,61
+35,265,Goal,6
+35,266,Yellow Card,41
+35,267,Red Card,76
+35,268,Substitution,21
+35,269,Goal,56
+35,270,Yellow Card,1
+36,271,Substitution,37
+36,272,Goal,73
+36,273,Yellow Card,19
+36,274,Red Card,55
+36,275,Substitution,1
+36,276,Goal,37
+36,277,Yellow Card,73
+36,278,Red Card,19
+36,279,Substitution,55
+36,280,Goal,1
+36,281,Yellow Card,37
+36,282,Red Card,73
+36,283,Substitution,19
+36,284,Goal,55
+36,285,Yellow Card,1
+36,286,Red Card,37
+36,287,Substitution,73
+36,288,Goal,19
+36,289,Yellow Card,55
+36,290,Red Card,1
+36,291,Substitution,37
+36,292,Goal,73
+37,293,Red Card,42
+37,294,Substitution,79
+37,295,Goal,26
+37,296,Yellow Card,63
+37,297,Red Card,10
+37,298,Substitution,47
+37,299,Goal,84
+37,300,Yellow Card,31
+37,301,Red Card,68
+37,302,Substitution,15
+37,303,Goal,52
+37,304,Yellow Card,89
+37,305,Red Card,36
+37,306,Substitution,73
+37,307,Goal,20
+37,308,Yellow Card,57
+37,309,Red Card,4
+37,310,Substitution,41
+37,311,Goal,78
+37,312,Yellow Card,25
+37,313,Red Card,62
+37,314,Substitution,9
+38,315,Yellow Card,1
+38,316,Red Card,39
+38,317,Substitution,77
+38,318,Goal,25
+38,319,Yellow Card,63
+38,320,Red Card,11
+38,321,Substitution,49
+38,322,Goal,87
+38,323,Yellow Card,35
+38,324,Red Card,73
+38,325,Substitution,21
+38,326,Goal,59
+38,327,Yellow Card,7
+38,328,Red Card,45
+38,329,Substitution,83
+38,330,Goal,31
+38,331,Yellow Card,69
+38,332,Red Card,17
+38,333,Substitution,55
+38,334,Goal,3
+38,335,Yellow Card,41
+38,336,Red Card,79
+39,337,Goal,4
+39,338,Yellow Card,43
+39,339,Red Card,82
+39,340,Substitution,31
+39,341,Goal,70
+39,342,Yellow Card,19
+39,343,Red Card,58
+39,344,Substitution,7
+39,345,Goal,46
+39,346,Yellow Card,85
+39,347,Red Card,34
+39,348,Substitution,73
+39,349,Goal,22
+39,350,Yellow Card,61
+39,351,Red Card,10
+39,352,Substitution,49
+39,353,Goal,88
+39,354,Yellow Card,37
+39,355,Red Card,76
+39,356,Substitution,25
+39,357,Goal,64
+39,358,Yellow Card,13
+40,359,Substitution,51
+40,360,Goal,1
+40,361,Yellow Card,41
+40,362,Red Card,81
+40,363,Substitution,31
+40,364,Goal,71
+40,365,Yellow Card,21
+40,366,Red Card,61
+40,367,Substitution,11
+40,368,Goal,51
+40,369,Yellow Card,1
+40,370,Red Card,41
+40,371,Substitution,81
+40,372,Goal,31
+40,373,Yellow Card,71
+40,374,Red Card,21
+40,375,Substitution,61
+40,376,Goal,11
+40,377,Yellow Card,51
+40,378,Red Card,1
+40,379,Substitution,41
+40,380,Goal,81
+41,381,Red Card,52
+41,382,Substitution,3
+41,383,Goal,44
+41,384,Yellow Card,85
+41,385,Red Card,36
+41,386,Substitution,77
+41,387,Goal,28
+41,388,Yellow Card,69
+41,389,Red Card,20
+41,390,Substitution,61
+41,391,Goal,12
+41,392,Yellow Card,53
+41,393,Red Card,4
+41,394,Substitution,45
+41,395,Goal,86
+41,396,Yellow Card,37
+41,397,Red Card,78
+41,398,Substitution,29
+41,399,Goal,70
+41,400,Yellow Card,21
+41,401,Red Card,62
+41,402,Substitution,13
+42,403,Yellow Card,7
+42,404,Red Card,49
+42,405,Substitution,1
+42,406,Goal,43
+42,407,Yellow Card,85
+42,408,Red Card,37
+42,409,Substitution,79
+42,410,Goal,31
+42,411,Yellow Card,73
+42,412,Red Card,25
+42,413,Substitution,67
+42,414,Goal,19
+42,415,Yellow Card,61
+42,416,Red Card,13
+42,417,Substitution,55
+42,418,Goal,7
+42,419,Yellow Card,49
+42,420,Red Card,1
+42,421,Substitution,43
+42,422,Goal,85
+42,423,Yellow Card,37
+42,424,Red Card,79
+43,425,Goal,6
+43,426,Yellow Card,49
+43,427,Red Card,2
+43,428,Substitution,45
+43,429,Goal,88
+43,430,Yellow Card,41
+43,431,Red Card,84
+43,432,Substitution,37
+43,433,Goal,80
+43,434,Yellow Card,33
+43,435,Red Card,76
+43,436,Substitution,29
+43,437,Goal,72
+43,438,Yellow Card,25
+43,439,Red Card,68
+43,440,Substitution,21
+43,441,Goal,64
+43,442,Yellow Card,17
+43,443,Red Card,60
+43,444,Substitution,13
+43,445,Goal,56
+43,446,Yellow Card,9
+44,447,Substitution,49
+44,448,Goal,3
+44,449,Yellow Card,47
+44,450,Red Card,1
+44,451,Substitution,45
+44,452,Goal,89
+44,453,Yellow Card,43
+44,454,Red Card,87
+44,455,Substitution,41
+44,456,Goal,85
+44,457,Yellow Card,39
+44,458,Red Card,83
+44,459,Substitution,37
+44,460,Goal,81
+44,461,Yellow Card,35
+44,462,Red Card,79
+44,463,Substitution,33
+44,464,Goal,77
+44,465,Yellow Card,31
+44,466,Red Card,75
+44,467,Substitution,29
+44,468,Goal,73
+45,469,Red Card,46
+45,470,Substitution,1
+45,471,Goal,46
+45,472,Yellow Card,1
+45,473,Red Card,46
+45,474,Substitution,1
+45,475,Goal,46
+45,476,Yellow Card,1
+45,477,Red Card,46
+45,478,Substitution,1
+45,479,Goal,46
+45,480,Yellow Card,1
+45,481,Red Card,46
+45,482,Substitution,1
+45,483,Goal,46
+45,484,Yellow Card,1
+45,485,Red Card,46
+45,486,Substitution,1
+45,487,Goal,46
+45,488,Yellow Card,1
+45,489,Red Card,46
+45,490,Substitution,1
+46,491,Yellow Card,87
+46,492,Red Card,43
+46,493,Substitution,89
+46,494,Goal,45
+46,495,Yellow Card,1
+46,496,Red Card,47
+46,497,Substitution,3
+46,498,Goal,49
+46,499,Yellow Card,5
+46,500,Red Card,51
+47,13,Goal,72
+47,14,Yellow Card,29
+47,15,Red Card,76
+47,16,Substitution,33
+47,17,Goal,80
+47,18,Yellow Card,37
+47,19,Red Card,84
+47,20,Substitution,41
+47,21,Goal,88
+47,22,Yellow Card,45
+47,23,Red Card,2
+47,24,Substitution,49
+47,25,Goal,6
+47,26,Yellow Card,53
+47,27,Red Card,10
+47,28,Substitution,57
+47,29,Goal,14
+47,30,Yellow Card,61
+47,31,Red Card,18
+47,32,Substitution,65
+47,33,Goal,22
+47,34,Yellow Card,69
+48,35,Substitution,61
+48,36,Goal,19
+48,37,Yellow Card,67
+48,38,Red Card,25
+48,39,Substitution,73
+48,40,Goal,31
+48,41,Yellow Card,79
+48,42,Red Card,37
+48,43,Substitution,85
+48,44,Goal,43
+48,45,Yellow Card,1
+48,46,Red Card,49
+48,47,Substitution,7
+48,48,Goal,55
+48,49,Yellow Card,13
+48,50,Red Card,61
+48,51,Substitution,19
+48,52,Goal,67
+48,53,Yellow Card,25
+48,54,Red Card,73
+48,55,Substitution,31
+48,56,Goal,79
+49,57,Red Card,4
+49,58,Substitution,53
+49,59,Goal,12
+49,60,Yellow Card,61
+49,61,Red Card,20
+49,62,Substitution,69
+49,63,Goal,28
+49,64,Yellow Card,77
+49,65,Red Card,36
+49,66,Substitution,85
+49,67,Goal,44
+49,68,Yellow Card,3
+49,69,Red Card,52
+49,70,Substitution,11
+49,71,Goal,60
+49,72,Yellow Card,19
+49,73,Red Card,68
+49,74,Substitution,27
+49,75,Goal,76
+49,76,Yellow Card,35
+49,77,Red Card,84
+49,78,Substitution,43
+50,79,Yellow Card,81
+50,80,Red Card,41
+50,81,Substitution,1
+50,82,Goal,51
+50,83,Yellow Card,11
+50,84,Red Card,61
+50,85,Substitution,21
+50,86,Goal,71
+50,87,Yellow Card,31
+50,88,Red Card,81
+50,89,Substitution,41
+50,90,Goal,1
+50,91,Yellow Card,51
+50,92,Red Card,11
+50,93,Substitution,61
+50,94,Goal,21
+50,95,Yellow Card,71
+50,96,Red Card,31
+50,97,Substitution,81
+50,98,Goal,41
+50,99,Yellow Card,1
+50,100,Red Card,51
+51,101,Goal,22
+51,102,Yellow Card,73
+51,103,Red Card,34
+51,104,Substitution,85
+51,105,Goal,46
+51,106,Yellow Card,7
+51,107,Red Card,58
+51,108,Substitution,19
+51,109,Goal,70
+51,110,Yellow Card,31
+51,111,Red Card,82
+51,112,Substitution,43
+51,113,Goal,4
+51,114,Yellow Card,55
+51,115,Red Card,16
+51,116,Substitution,67
+51,117,Goal,28
+51,118,Yellow Card,79
+51,119,Red Card,40
+51,120,Substitution,1
+51,121,Goal,52
+51,122,Yellow Card,13
+52,123,Substitution,7
+52,124,Goal,59
+52,125,Yellow Card,21
+52,126,Red Card,73
+52,127,Substitution,35
+52,128,Goal,87
+52,129,Yellow Card,49
+52,130,Red Card,11
+52,131,Substitution,63
+52,132,Goal,25
+52,133,Yellow Card,77
+52,134,Red Card,39
+52,135,Substitution,1
+52,136,Goal,53
+52,137,Yellow Card,15
+52,138,Red Card,67
+52,139,Substitution,29
+52,140,Goal,81
+52,141,Yellow Card,43
+52,142,Red Card,5
+52,143,Substitution,57
+52,144,Goal,19
+53,145,Red Card,36
+53,146,Substitution,89
+53,147,Goal,52
+53,148,Yellow Card,15
+53,149,Red Card,68
+53,150,Substitution,31
+53,151,Goal,84
+53,152,Yellow Card,47
+53,153,Red Card,10
+53,154,Substitution,63
+53,155,Goal,26
+53,156,Yellow Card,79
+53,157,Red Card,42
+53,158,Substitution,5
+53,159,Goal,58
+53,160,Yellow Card,21
+53,161,Red Card,74
+53,162,Substitution,37
+53,163,Goal,90
+53,164,Yellow Card,53
+53,165,Red Card,16
+53,166,Substitution,69
+54,167,Yellow Card,19
+54,168,Red Card,73
+54,169,Substitution,37
+54,170,Goal,1
+54,171,Yellow Card,55
+54,172,Red Card,19
+54,173,Substitution,73
+54,174,Goal,37
+54,175,Yellow Card,1
+54,176,Red Card,55
+54,177,Substitution,19
+54,178,Goal,73
+54,179,Yellow Card,37
+54,180,Red Card,1
+54,181,Substitution,55
+54,182,Goal,19
+54,183,Yellow Card,73
+54,184,Red Card,37
+54,185,Substitution,1
+54,186,Goal,55
+54,187,Yellow Card,19
+54,188,Red Card,73
+55,189,Goal,46
+55,190,Yellow Card,11
+55,191,Red Card,66
+55,192,Substitution,31
+55,193,Goal,86
+55,194,Yellow Card,51
+55,195,Red Card,16
+55,196,Substitution,71
+55,197,Goal,36
+55,198,Yellow Card,1
+55,199,Red Card,56
+55,200,Substitution,21
+55,201,Goal,76
+55,202,Yellow Card,41
+55,203,Red Card,6
+55,204,Substitution,61
+55,205,Goal,26
+55,206,Yellow Card,81
+55,207,Red Card,46
+55,208,Substitution,11
+55,209,Goal,66
+55,210,Yellow Card,31
+56,211,Substitution,27
+56,212,Goal,83
+56,213,Yellow Card,49
+56,214,Red Card,15
+56,215,Substitution,71
+56,216,Goal,37
+56,217,Yellow Card,3
+56,218,Red Card,59
+56,219,Substitution,25
+56,220,Goal,81
+56,221,Yellow Card,47
+56,222,Red Card,13
+56,223,Substitution,69
+56,224,Goal,35
+56,225,Yellow Card,1
+56,226,Red Card,57
+56,227,Substitution,23
+56,228,Goal,79
+56,229,Yellow Card,45
+56,230,Red Card,11
+56,231,Substitution,67
+56,232,Goal,33
+57,233,Red Card,52
+57,234,Substitution,19
+57,235,Goal,76
+57,236,Yellow Card,43
+57,237,Red Card,10
+57,238,Substitution,67
+57,239,Goal,34
+57,240,Yellow Card,1
+57,241,Red Card,58
+57,242,Substitution,25
+57,243,Goal,82
+57,244,Yellow Card,49
+57,245,Red Card,16
+57,246,Substitution,73
+57,247,Goal,40
+57,248,Yellow Card,7
+57,249,Red Card,64
+57,250,Substitution,31
+57,251,Goal,88
+57,252,Yellow Card,55
+57,253,Red Card,22
+57,254,Substitution,79
+58,255,Yellow Card,31
+58,256,Red Card,89
+58,257,Substitution,57
+58,258,Goal,25
+58,259,Yellow Card,83
+58,260,Red Card,51
+58,261,Substitution,19
+58,262,Goal,77
+58,263,Yellow Card,45
+58,264,Red Card,13
+58,265,Substitution,71
+58,266,Goal,39
+58,267,Yellow Card,7
+58,268,Red Card,65
+58,269,Substitution,33
+58,270,Goal,1
+58,271,Yellow Card,59
+58,272,Red Card,27
+58,273,Substitution,85
+58,274,Goal,53
+58,275,Yellow Card,21
+58,276,Red Card,79
+59,277,Goal,54
+59,278,Yellow Card,23
+59,279,Red Card,82
+59,280,Substitution,51
+59,281,Goal,20
+59,282,Yellow Card,79
+59,283,Red Card,48
+59,284,Substitution,17
+59,285,Goal,76
+59,286,Yellow Card,45
+59,287,Red Card,14
+59,288,Substitution,73
+59,289,Goal,42
+59,290,Yellow Card,11
+59,291,Red Card,70
+59,292,Substitution,39
+59,293,Goal,8
+59,294,Yellow Card,67
+59,295,Red Card,36
+59,296,Substitution,5
+59,297,Goal,64
+59,298,Yellow Card,33
+60,299,Substitution,31
+60,300,Goal,1
+60,301,Yellow Card,61
+60,302,Red Card,31
+60,303,Substitution,1
+60,304,Goal,61
+60,305,Yellow Card,31
+60,306,Red Card,1
+60,307,Substitution,61
+60,308,Goal,31
+60,309,Yellow Card,1
+60,310,Red Card,61
+60,311,Substitution,31
+60,312,Goal,1
+60,313,Yellow Card,61
+60,314,Red Card,31
+60,315,Substitution,1
+60,316,Goal,61
+60,317,Yellow Card,31
+60,318,Red Card,1
+60,319,Substitution,61
+60,320,Goal,31
+61,321,Red Card,52
+61,322,Substitution,23
+61,323,Goal,84
+61,324,Yellow Card,55
+61,325,Red Card,26
+61,326,Substitution,87
+61,327,Goal,58
+61,328,Yellow Card,29
+61,329,Red Card,90
+61,330,Substitution,61
+61,331,Goal,32
+61,332,Yellow Card,3
+61,333,Red Card,64
+61,334,Substitution,35
+61,335,Goal,6
+61,336,Yellow Card,67
+61,337,Red Card,38
+61,338,Substitution,9
+61,339,Goal,70
+61,340,Yellow Card,41
+61,341,Red Card,12
+61,342,Substitution,73
+62,343,Yellow Card,27
+62,344,Red Card,89
+62,345,Substitution,61
+62,346,Goal,33
+62,347,Yellow Card,5
+62,348,Red Card,67
+62,349,Substitution,39
+62,350,Goal,11
+62,351,Yellow Card,73
+62,352,Red Card,45
+62,353,Substitution,17
+62,354,Goal,79
+62,355,Yellow Card,51
+62,356,Red Card,23
+62,357,Substitution,85
+62,358,Goal,57
+62,359,Yellow Card,29
+62,360,Red Card,1
+62,361,Substitution,63
+62,362,Goal,35
+62,363,Yellow Card,7
+62,364,Red Card,69
+63,365,Goal,46
+63,366,Yellow Card,19
+63,367,Red Card,82
+63,368,Substitution,55
+63,369,Goal,28
+63,370,Yellow Card,1
+63,371,Red Card,64
+63,372,Substitution,37
+63,373,Goal,10
+63,374,Yellow Card,73
+63,375,Red Card,46
+63,376,Substitution,19
+63,377,Goal,82
+63,378,Yellow Card,55
+63,379,Red Card,28
+63,380,Substitution,1
+63,381,Goal,64
+63,382,Yellow Card,37
+63,383,Red Card,10
+63,384,Substitution,73
+63,385,Goal,46
+63,386,Yellow Card,19
