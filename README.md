@@ -115,4 +115,210 @@
    - המנהל מחפש קבוצה לפי שם, עורך את רשימת השחקנים ולוחץ "עדכן".
 
 ---</div>
+Project Report - Phase A
+
+Submitted by:
+
+Michal Yerushalmi 214955064
+
+Ruchama Bricker 214801771
+
+
+Sports Competition Management System
+
+Selected Unit: World Cup
+
+
+---
+
+Table of Contents
+
+1. Introduction
+
+
+2. Diagrams
+
+
+3. Design Decisions
+
+
+4. Data Entry
+
+
+5. Backup and Restore
+
+
+6. System Requirements
+
+
+7. System Interfaces
+
+
+8. Use Cases
+
+
+
+
+---
+
+Introduction
+
+The system is designed for managing sports competitions. It stores data related to competition matches, players, teams, stages, and match statuses.
+
+Features:
+
+Create matches between teams
+
+Manage players and teams in the competition
+
+Handle competition stages (group stage, quarter-finals, semi-finals, finals)
+
+Update match results
+
+
+The system operates using a PostgreSQL database.
+
+
+---
+
+Diagrams
+
+The following diagrams illustrate the data structure and relationships between tables:
+
+ERD (Entity Relationship Diagram)
+
+
+
+DSD (Data Structure Diagram)
+
+
+
+
+---
+
+Design Decisions
+
+Key design choices made during system planning:
+
+Each match has a unique identifier (match_id) to manage results and statuses efficiently.
+
+Players are stored in a separate table with relationships to teams and matches.
+
+Competition stages are stored in a dedicated stages table for easy updates and support for multiple tournaments simultaneously.
+
+
+
+---
+
+Data Entry
+
+Data was inserted using three methods:
+
+1. File Import (Mockaroo):
+
+Generated CSV files using Mockaroo.
+
+
+
+
+
+2. Programmatic Entry (Python):
+
+Used Python scripts to generate and insert data.
+
+
+
+
+
+3. File Import (Generatedata):
+
+Used Generatedata to create CSV-formatted data.
+
+
+
+
+
+
+
+---
+
+Backup and Restore
+
+We implemented backup and restore using pg_dump and pg_restore:
+
+1. Backup:
+
+
+
+
+
+2. Restore:
+
+
+
+
+
+
+
+---
+
+System Requirements
+
+Database: PostgreSQL 14+
+
+Programming Language: Python 3.8+ (for scripts)
+
+Data Generation Tools: Mockaroo, Generatedata
+
+Supported OS: Windows/Linux
+
+
+
+---
+
+System Interfaces
+
+Tournament Management – Create and update tournaments.
+
+Team & Player Management – Edit and update player/team details.
+
+Results Entry – Input match results and update tournament stages.
+
+
+
+---
+
+Use Cases
+
+1. Adding a New Tournament:
+
+The user navigates to the management system, clicks "Add Tournament," enters a name and dates, and confirms.
+
+
+
+2. Entering Match Results:
+
+The user selects a match, inputs the score, and clicks "Save."
+
+
+
+3. Updating Team Details:
+
+The manager searches for a team, edits the player list, and clicks "Update."
+
+
+
+
+
+---
+
+License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+
+
+הטקסט מעודכן בפורמט שמתאים לקריאה ב-README של GitHub. אם יש לך שינויים נוספים או התאמות שתרצי להוסיף, אני כאן!
+
+
 
