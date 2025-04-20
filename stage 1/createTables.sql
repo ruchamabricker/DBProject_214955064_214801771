@@ -6,7 +6,6 @@ CREATE TABLE Teams (
     fifa_ranking INT
 );
 
--- אתחול הסיקוונס של ה-ID של Teams
 ALTER SEQUENCE teams_team_id_seq RESTART WITH 1;
 
 CREATE TABLE Stadiums (
@@ -16,7 +15,6 @@ CREATE TABLE Stadiums (
     capacity INT NOT NULL
 );
 
--- אתחול הסיקוונס של ה-ID של Stadiums
 ALTER SEQUENCE stadiums_stadium_id_seq RESTART WITH 1;
 
 CREATE TABLE TournamentStages (
@@ -27,7 +25,6 @@ CREATE TABLE TournamentStages (
     finish_date DATE NOT NULL
 );
 
--- אתחול הסיקוונס של ה-ID של TournamentStages
 ALTER SEQUENCE tournamentstages_stage_id_seq RESTART WITH 1;
 
 CREATE TABLE Players (
@@ -41,7 +38,6 @@ CREATE TABLE Players (
     FOREIGN KEY (team_id) REFERENCES Teams(team_id) ON DELETE CASCADE
 );
 
--- אתחול הסיקוונס של ה-ID של Players
 ALTER SEQUENCE players_player_id_seq RESTART WITH 1;
 
 CREATE TABLE Matches (
@@ -59,7 +55,6 @@ CREATE TABLE Matches (
     FOREIGN KEY (stage_id) REFERENCES TournamentStages(stage_id) ON DELETE SET NULL
 );
 
--- אתחול הסיקוונס של ה-ID של Matches
 ALTER SEQUENCE matches_match_id_seq RESTART WITH 1;
 
 CREATE TABLE MatchEvents (
@@ -72,7 +67,6 @@ CREATE TABLE MatchEvents (
     FOREIGN KEY (player_id) REFERENCES Players(player_id) ON DELETE SET NULL
 );
 
--- אתחול הסיקוונס של ה-ID של MatchEvents
 ALTER SEQUENCE matchevents_event_id_seq RESTART WITH 1;
 
 CREATE TABLE PlayersInMatches (
@@ -84,4 +78,3 @@ CREATE TABLE PlayersInMatches (
     FOREIGN KEY (match_id) REFERENCES Matches(match_id) ON DELETE CASCADE
 );
 
--- לא צריך ALTER לסיקוונס בטבלה זו כי יש לך מפתח ראשי על שני עמודות
