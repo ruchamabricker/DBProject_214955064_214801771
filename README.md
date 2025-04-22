@@ -430,61 +430,42 @@ WHERE DATE_PART('year', AGE(CURRENT_DATE, birth_date)) > 40;
 
 ---
 
-### 3. עדכון דירוג קבוצות לפי ביצועים בשנת 2024
+### 3. עדכון דירוג פיפ"א לכל הקבוצות על פי מספר הניצחונות בשנת 2024, ללא כפילויות בדירוג (1 – דירוג גבוה ביותר, 48 – הנמוך ביותר)
 
 ### תיאור:
-השאילתה מעדכנת את דירוג ה־FIFA של הקבוצות בהתאם לביצועיהן בשנת 2024: קבוצות עם יותר משלושה ניצחונות יקבלו תוספת לדירוג, בעוד קבוצות עם יותר משלושה הפסדים ירדו בדירוג.
+שאילתה זו מעדכנת את דירוג הפיפ"א של כל 48 הקבוצות לפי מספר הניצחונות שלהן בשנת 2024. הקבוצה עם הכי הרבה ניצחונות תקבל דירוג 1 (הגבוה ביותר), והקבוצה עם הכי מעט תקבל דירוג 48 (הנמוך ביותר). דירוגים לא חוזרים על עצמם.
 
 ### מטרה:
-משקפת שיטת דירוג דינמית לפי ביצועי השנה הנוכחית – מאפשרת ניתוח עדכני של חוזק הקבוצות.
+לדרג את הקבוצות בצורה מדויקת ותחרותית לפי ביצועיהן בפועל בטורניר, באופן שמבטיח דירוג ייחודי לכל קבוצה.
+
 
 ### שאילתת SQL:
 ```sql
+WITH team_wins AS (
+  SELECT team_id,
+         COUNT(*) AS wins
+  FROM (
+    SELECT team1_id AS team_id
+    FROM Matches
+    WHERE score_team1 > score_team2 AND EXTRACT(YEAR FROM match_date) = 2024
+    UNION ALL
+    SELECT team2_id AS team_id
+    FROM Matches
+    WHERE score_team2 > score_team1 AND EXTRACT(YEAR FROM match_date) = 2024
+  ) AS all_wins
+  GROUP BY team_id
+),
+ranked_teams AS (
+  SELECT t.team_id,
+         COALESCE(w.wins, 0) AS wins,
+         ROW_NUMBER() OVER (ORDER BY COALESCE(w.wins, 0) DESC, t.team_id) AS new_rank
+  FROM Teams t
+  LEFT JOIN team_wins w ON t.team_id = w.team_id
+)
 UPDATE Teams
-SET fifa_ranking = 
-    CASE
-        -- קבוצה עם יותר מ-3 ניצחונות ב-2024 → תעלה בדירוג (המספר יגדל)
-        WHEN team_id IN (
-            SELECT team_id
-            FROM (
-                SELECT team1_id AS team_id
-                FROM Matches
-                WHERE score_team1 > score_team2 AND EXTRACT(YEAR FROM match_date) = 2024
-                UNION ALL
-                SELECT team2_id AS team_id
-                FROM Matches
-                WHERE score_team2 > score_team1 AND EXTRACT(YEAR FROM match_date) = 2024
-            ) AS wins
-            GROUP BY team_id
-            HAVING COUNT(*) > 3
-        ) THEN 
-            CASE
-                WHEN fifa_ranking + 20 > 211 THEN 211
-                ELSE fifa_ranking + 20
-            END
-        
-        -- קבוצה עם יותר מ-3 הפסדים ב-2024 → תרד בדירוג (המספר יקטן)
-        WHEN team_id IN (
-            SELECT team_id
-            FROM (
-                SELECT team1_id AS team_id
-                FROM Matches
-                WHERE score_team1 < score_team2 AND EXTRACT(YEAR FROM match_date) = 2024
-                UNION ALL
-                SELECT team2_id AS team_id
-                FROM Matches
-                WHERE score_team2 < score_team1 AND EXTRACT(YEAR FROM match_date) = 2024
-            ) AS losses
-            GROUP BY team_id
-            HAVING COUNT(*) > 3
-        ) THEN 
-            CASE
-                WHEN fifa_ranking - 15 < 164 THEN 164
-                ELSE fifa_ranking - 15
-            END
-
-        ELSE fifa_ranking
-    END;
+SET fifa_ranking = ranked_teams.new_rank
+FROM ranked_teams
+WHERE Teams.team_id = ranked_teams.team_id;
 ```
 
 ### תמונת מסך של הרצה
