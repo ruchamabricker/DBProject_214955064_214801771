@@ -5,8 +5,6 @@
 -- Dumped from database version 17.4
 -- Dumped by pg_dump version 17.4
 
--- Started on 2025-04-20 23:47:43
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -24,7 +22,6 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 224 (class 1259 OID 24671)
 -- Name: matches; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -43,7 +40,6 @@ CREATE TABLE public.matches (
 ALTER TABLE public.matches OWNER TO postgres;
 
 --
--- TOC entry 223 (class 1259 OID 24670)
 -- Name: matches_match_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -59,8 +55,6 @@ CREATE SEQUENCE public.matches_match_id_seq
 ALTER SEQUENCE public.matches_match_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4925 (class 0 OID 0)
--- Dependencies: 223
 -- Name: matches_match_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -68,7 +62,6 @@ ALTER SEQUENCE public.matches_match_id_seq OWNED BY public.matches.match_id;
 
 
 --
--- TOC entry 229 (class 1259 OID 24792)
 -- Name: matchevents; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -86,7 +79,6 @@ CREATE TABLE public.matchevents (
 ALTER TABLE public.matchevents OWNER TO postgres;
 
 --
--- TOC entry 228 (class 1259 OID 24791)
 -- Name: matchevents_event_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -102,8 +94,6 @@ CREATE SEQUENCE public.matchevents_event_id_seq
 ALTER SEQUENCE public.matchevents_event_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4926 (class 0 OID 0)
--- Dependencies: 228
 -- Name: matchevents_event_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -111,7 +101,6 @@ ALTER SEQUENCE public.matchevents_event_id_seq OWNED BY public.matchevents.event
 
 
 --
--- TOC entry 226 (class 1259 OID 24739)
 -- Name: players; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -129,7 +118,6 @@ CREATE TABLE public.players (
 ALTER TABLE public.players OWNER TO postgres;
 
 --
--- TOC entry 225 (class 1259 OID 24738)
 -- Name: players_player_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -145,8 +133,6 @@ CREATE SEQUENCE public.players_player_id_seq
 ALTER SEQUENCE public.players_player_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4927 (class 0 OID 0)
--- Dependencies: 225
 -- Name: players_player_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -154,7 +140,6 @@ ALTER SEQUENCE public.players_player_id_seq OWNED BY public.players.player_id;
 
 
 --
--- TOC entry 227 (class 1259 OID 24775)
 -- Name: playersinmatches; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -168,7 +153,6 @@ CREATE TABLE public.playersinmatches (
 ALTER TABLE public.playersinmatches OWNER TO postgres;
 
 --
--- TOC entry 222 (class 1259 OID 24663)
 -- Name: stadiums; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -184,7 +168,6 @@ CREATE TABLE public.stadiums (
 ALTER TABLE public.stadiums OWNER TO postgres;
 
 --
--- TOC entry 221 (class 1259 OID 24662)
 -- Name: stadiums_stadium_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -200,8 +183,6 @@ CREATE SEQUENCE public.stadiums_stadium_id_seq
 ALTER SEQUENCE public.stadiums_stadium_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4928 (class 0 OID 0)
--- Dependencies: 221
 -- Name: stadiums_stadium_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -209,7 +190,6 @@ ALTER SEQUENCE public.stadiums_stadium_id_seq OWNED BY public.stadiums.stadium_i
 
 
 --
--- TOC entry 218 (class 1259 OID 16806)
 -- Name: teams; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -225,7 +205,6 @@ CREATE TABLE public.teams (
 ALTER TABLE public.teams OWNER TO postgres;
 
 --
--- TOC entry 217 (class 1259 OID 16805)
 -- Name: teams_team_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -241,8 +220,6 @@ CREATE SEQUENCE public.teams_team_id_seq
 ALTER SEQUENCE public.teams_team_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4929 (class 0 OID 0)
--- Dependencies: 217
 -- Name: teams_team_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -250,7 +227,6 @@ ALTER SEQUENCE public.teams_team_id_seq OWNED BY public.teams.team_id;
 
 
 --
--- TOC entry 220 (class 1259 OID 16822)
 -- Name: tournamentstages; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -267,7 +243,6 @@ CREATE TABLE public.tournamentstages (
 ALTER TABLE public.tournamentstages OWNER TO postgres;
 
 --
--- TOC entry 219 (class 1259 OID 16821)
 -- Name: tournamentstages_stage_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -283,8 +258,6 @@ CREATE SEQUENCE public.tournamentstages_stage_id_seq
 ALTER SEQUENCE public.tournamentstages_stage_id_seq OWNER TO postgres;
 
 --
--- TOC entry 4930 (class 0 OID 0)
--- Dependencies: 219
 -- Name: tournamentstages_stage_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -292,7 +265,6 @@ ALTER SEQUENCE public.tournamentstages_stage_id_seq OWNED BY public.tournamentst
 
 
 --
--- TOC entry 4728 (class 2604 OID 24674)
 -- Name: matches match_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -300,7 +272,6 @@ ALTER TABLE ONLY public.matches ALTER COLUMN match_id SET DEFAULT nextval('publi
 
 
 --
--- TOC entry 4734 (class 2604 OID 24795)
 -- Name: matchevents event_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -308,7 +279,6 @@ ALTER TABLE ONLY public.matchevents ALTER COLUMN event_id SET DEFAULT nextval('p
 
 
 --
--- TOC entry 4731 (class 2604 OID 24742)
 -- Name: players player_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -316,7 +286,6 @@ ALTER TABLE ONLY public.players ALTER COLUMN player_id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4727 (class 2604 OID 24666)
 -- Name: stadiums stadium_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -324,7 +293,6 @@ ALTER TABLE ONLY public.stadiums ALTER COLUMN stadium_id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4724 (class 2604 OID 16809)
 -- Name: teams team_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -332,7 +300,6 @@ ALTER TABLE ONLY public.teams ALTER COLUMN team_id SET DEFAULT nextval('public.t
 
 
 --
--- TOC entry 4726 (class 2604 OID 16825)
 -- Name: tournamentstages stage_id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -340,8 +307,6 @@ ALTER TABLE ONLY public.tournamentstages ALTER COLUMN stage_id SET DEFAULT nextv
 
 
 --
--- TOC entry 4914 (class 0 OID 24671)
--- Dependencies: 224
 -- Data for Name: matches; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -408,8 +373,6 @@ COPY public.matches (match_id, team1_id, team2_id, match_date, stadium_id, score
 
 
 --
--- TOC entry 4919 (class 0 OID 24792)
--- Dependencies: 229
 -- Data for Name: matchevents; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -1676,8 +1639,6 @@ COPY public.matchevents (event_id, match_id, player_id, event_type, minute) FROM
 
 
 --
--- TOC entry 4916 (class 0 OID 24739)
--- Dependencies: 226
 -- Data for Name: players; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2010,8 +1971,6 @@ COPY public.players (player_id, team_id, name, "position", birth_date, goals, as
 
 
 --
--- TOC entry 4917 (class 0 OID 24775)
--- Dependencies: 227
 -- Data for Name: playersinmatches; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2485,8 +2444,6 @@ f	25	38
 
 
 --
--- TOC entry 4912 (class 0 OID 24663)
--- Dependencies: 222
 -- Data for Name: stadiums; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2498,66 +2455,62 @@ COPY public.stadiums (stadium_id, name, city, capacity) FROM stdin;
 
 
 --
--- TOC entry 4908 (class 0 OID 16806)
--- Dependencies: 218
 -- Data for Name: teams; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.teams (team_id, team_name, coach, team_group, fifa_ranking) FROM stdin;
-1	France	Cassaundra Wornham	A	209
-2	Spain	Robbyn Boldecke	E	196
-3	England	Noelyn Ellcome	E	211
-4	Brazil	Roxy Gladdish	H	211
-5	Netherlands	Wynn Macveigh	C	211
-6	Portugal	Blinni Edwick	C	211
-7	Belgium	Emmaline Benton	G	199
-8	Italy	Lesley Bengal	H	195
-9	Germany	Leyla Lieb	F	191
-10	Croatia	Lise Peppin	E	195
-11	Switzerland	Cathyleen Swinnard	H	174
-12	Denmark	Theo Gerrelts	A	164
-13	Austria	Tim Illwell	A	184
-14	Japan	Ephrayim Kerrey	D	169
-15	Iran	Giacomo Laurenz	B	190
-16	Senegal	Tully Planks	A	177
-17	Morocco	Danica Benian	B	200
-18	Uruguay	Andras Twelftree	F	187
-19	Colombia	Brigida Pischoff	E	192
-20	South Korea	Sinclare Ship	E	166
-21	Ecuador	Florance Ringer	F	209
-22	Australia	Gabriel Lett	A	182
-23	Egypt	Merilee Eagle	G	207
-24	Panama	Arthur Casella	A	211
-25	Algeria	Kristel Snarie	F	174
-26	Ivory Coast	Gilbertina Escala	B	169
-27	Paraguay	Vivien Preshaw	F	187
-28	Tunisia	Adrien Milksop	D	167
-29	Cameroon	Wolfy Yushachkov	E	173
-30	Costa Rica	Clark Merle	B	196
-31	South Africa	Golda Climson	G	171
-32	Uzbekistan	Erie Garnham	C	185
-33	Scotland	Caroljean Fortune	A	174
-34	Slovenia	Carmencita Datte	C	164
-35	Ireland	Reggis Vigurs	G	178
-36	Finland	Modesty Papis	E	174
-37	Georgia	Nicolis Bernardeschi	B	208
-38	Albania	Kaye Iglesia	B	167
-39	North Macedonia	Rodina Sellstrom	C	176
-40	Iceland	Tana Bracknell	G	186
-41	Norway	Grove Netti	C	168
-42	Slovakia	Emalee Josefson	B	191
-43	Romania	Natala Gaudon	D	164
-44	Greece	Danyelle Cranston	B	206
-45	Hungary	Danika Bodocs	H	201
-46	Czech Republic	Illa Mallon	A	177
-47	Wales	Irving Simionato	C	192
-48	Saudi Arabia	Ajay Watterson	G	201
+7	Belgium	Emmaline Benton	G	1
+1	France	Cassaundra Wornham	A	2
+2	Spain	Robbyn Boldecke	E	3
+3	England	Noelyn Ellcome	E	4
+4	Brazil	Roxy Gladdish	H	5
+6	Portugal	Blinni Edwick	C	6
+5	Netherlands	Wynn Macveigh	C	7
+8	Italy	Lesley Bengal	H	8
+9	Germany	Leyla Lieb	F	9
+10	Croatia	Lise Peppin	E	10
+11	Switzerland	Cathyleen Swinnard	H	11
+12	Denmark	Theo Gerrelts	A	12
+13	Austria	Tim Illwell	A	13
+14	Japan	Ephrayim Kerrey	D	14
+15	Iran	Giacomo Laurenz	B	15
+16	Senegal	Tully Planks	A	16
+17	Morocco	Danica Benian	B	17
+18	Uruguay	Andras Twelftree	F	18
+19	Colombia	Brigida Pischoff	E	19
+20	South Korea	Sinclare Ship	E	20
+21	Ecuador	Florance Ringer	F	21
+22	Australia	Gabriel Lett	A	22
+23	Egypt	Merilee Eagle	G	23
+24	Panama	Arthur Casella	A	24
+25	Algeria	Kristel Snarie	F	25
+26	Ivory Coast	Gilbertina Escala	B	26
+27	Paraguay	Vivien Preshaw	F	27
+28	Tunisia	Adrien Milksop	D	28
+29	Cameroon	Wolfy Yushachkov	E	29
+30	Costa Rica	Clark Merle	B	30
+31	South Africa	Golda Climson	G	31
+32	Uzbekistan	Erie Garnham	C	32
+33	Scotland	Caroljean Fortune	A	33
+34	Slovenia	Carmencita Datte	C	34
+35	Ireland	Reggis Vigurs	G	35
+36	Finland	Modesty Papis	E	36
+37	Georgia	Nicolis Bernardeschi	B	37
+38	Albania	Kaye Iglesia	B	38
+39	North Macedonia	Rodina Sellstrom	C	39
+40	Iceland	Tana Bracknell	G	40
+41	Norway	Grove Netti	C	41
+42	Slovakia	Emalee Josefson	B	42
+43	Romania	Natala Gaudon	D	43
+44	Greece	Danyelle Cranston	B	44
+45	Hungary	Danika Bodocs	H	45
+46	Czech Republic	Illa Mallon	A	46
+47	Wales	Irving Simionato	C	47
+48	Saudi Arabia	Ajay Watterson	G	48
 \.
 
 
 --
--- TOC entry 4910 (class 0 OID 16822)
--- Dependencies: 220
 -- Data for Name: tournamentstages; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2571,8 +2524,6 @@ COPY public.tournamentstages (stage_id, name, matches_count, start_date, finish_
 
 
 --
--- TOC entry 4931 (class 0 OID 0)
--- Dependencies: 223
 -- Name: matches_match_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2580,8 +2531,6 @@ SELECT pg_catalog.setval('public.matches_match_id_seq', 63, true);
 
 
 --
--- TOC entry 4932 (class 0 OID 0)
--- Dependencies: 228
 -- Name: matchevents_event_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2589,8 +2538,6 @@ SELECT pg_catalog.setval('public.matchevents_event_id_seq', 1368, true);
 
 
 --
--- TOC entry 4933 (class 0 OID 0)
--- Dependencies: 225
 -- Name: players_player_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2598,8 +2545,6 @@ SELECT pg_catalog.setval('public.players_player_id_seq', 501, true);
 
 
 --
--- TOC entry 4934 (class 0 OID 0)
--- Dependencies: 221
 -- Name: stadiums_stadium_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2607,8 +2552,6 @@ SELECT pg_catalog.setval('public.stadiums_stadium_id_seq', 15, true);
 
 
 --
--- TOC entry 4935 (class 0 OID 0)
--- Dependencies: 217
 -- Name: teams_team_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2616,8 +2559,6 @@ SELECT pg_catalog.setval('public.teams_team_id_seq', 311, true);
 
 
 --
--- TOC entry 4936 (class 0 OID 0)
--- Dependencies: 219
 -- Name: tournamentstages_stage_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -2625,7 +2566,6 @@ SELECT pg_catalog.setval('public.tournamentstages_stage_id_seq', 74, true);
 
 
 --
--- TOC entry 4746 (class 2606 OID 24678)
 -- Name: matches matches_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2634,7 +2574,6 @@ ALTER TABLE ONLY public.matches
 
 
 --
--- TOC entry 4752 (class 2606 OID 24801)
 -- Name: matchevents matchevents_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2643,7 +2582,6 @@ ALTER TABLE ONLY public.matchevents
 
 
 --
--- TOC entry 4748 (class 2606 OID 24746)
 -- Name: players players_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2652,7 +2590,6 @@ ALTER TABLE ONLY public.players
 
 
 --
--- TOC entry 4750 (class 2606 OID 24779)
 -- Name: playersinmatches playersinmatches_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2661,7 +2598,6 @@ ALTER TABLE ONLY public.playersinmatches
 
 
 --
--- TOC entry 4744 (class 2606 OID 24668)
 -- Name: stadiums stadiums_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2670,7 +2606,6 @@ ALTER TABLE ONLY public.stadiums
 
 
 --
--- TOC entry 4740 (class 2606 OID 16811)
 -- Name: teams teams_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2679,7 +2614,6 @@ ALTER TABLE ONLY public.teams
 
 
 --
--- TOC entry 4742 (class 2606 OID 16830)
 -- Name: tournamentstages tournamentstages_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2688,7 +2622,6 @@ ALTER TABLE ONLY public.tournamentstages
 
 
 --
--- TOC entry 4753 (class 2606 OID 24689)
 -- Name: matches matches_stadium_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2697,7 +2630,6 @@ ALTER TABLE ONLY public.matches
 
 
 --
--- TOC entry 4754 (class 2606 OID 24694)
 -- Name: matches matches_stage_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2706,7 +2638,6 @@ ALTER TABLE ONLY public.matches
 
 
 --
--- TOC entry 4755 (class 2606 OID 24679)
 -- Name: matches matches_team1_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2715,7 +2646,6 @@ ALTER TABLE ONLY public.matches
 
 
 --
--- TOC entry 4756 (class 2606 OID 24684)
 -- Name: matches matches_team2_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2724,7 +2654,6 @@ ALTER TABLE ONLY public.matches
 
 
 --
--- TOC entry 4760 (class 2606 OID 24802)
 -- Name: matchevents matchevents_match_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2733,7 +2662,6 @@ ALTER TABLE ONLY public.matchevents
 
 
 --
--- TOC entry 4761 (class 2606 OID 24807)
 -- Name: matchevents matchevents_player_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2742,7 +2670,6 @@ ALTER TABLE ONLY public.matchevents
 
 
 --
--- TOC entry 4757 (class 2606 OID 24747)
 -- Name: players players_team_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2751,7 +2678,6 @@ ALTER TABLE ONLY public.players
 
 
 --
--- TOC entry 4758 (class 2606 OID 24785)
 -- Name: playersinmatches playersinmatches_match_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -2760,15 +2686,12 @@ ALTER TABLE ONLY public.playersinmatches
 
 
 --
--- TOC entry 4759 (class 2606 OID 24780)
 -- Name: playersinmatches playersinmatches_player_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.playersinmatches
     ADD CONSTRAINT playersinmatches_player_id_fkey FOREIGN KEY (player_id) REFERENCES public.players(player_id) ON DELETE CASCADE;
 
-
--- Completed on 2025-04-20 23:47:43
 
 --
 -- PostgreSQL database dump complete
