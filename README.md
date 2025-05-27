@@ -677,3 +677,150 @@ VALUES ('Unicorn FC', 'Magical Coach', 'A', 199, 'Pink');
 
 - All constraints were tested using invalid INSERT statements, resulting in runtime errors as expected.
 - The system maintains data consistency through proper use of foreign keys, data types, and constraints.
+
+
+# שלב 3 – אינטגרציה, מבטים ושאילתות
+
+## תוכן העניינים
+
+1. תרשימי ERD ו-DSD  
+2. החלטות אינטגרציה  
+3. תהליך העבודה והפקודות  
+4. מבטים (Views)  
+5. שאילתות על מבטים  
+
+---
+
+## 1. תרשימי ERD ו-DSD
+
+להלן תרשימי ה-ERD וה-DSD המעודכנים לאחר שלב האינטגרציה:
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/ERD/erd_integration.png?raw=true)  
+![DSD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/DSD/DSD_INTEGRATION.png?raw=true)
+
+
+---
+
+## 2. החלטות אינטגרציה
+
+במהלך שלב האינטגרציה, התקבלו ההחלטות הבאות:
+
+- **איחוד טבלאות**: טבלאות `Players` ו־`Teams` אוחדו לטבלה אחת בשם `Participants` לצורך פשטות וניהול אחיד של ישויות משתתפות.
+- **הוספת שדות תיעוד**: לכל טבלה נוספו שדות `created_at` ו־`updated_at` לצורך מעקב אחר תיעוד השינויים.
+- **קשרים עם מפתחות זרים**: הוגדרו קשרים בין טבלאות באמצעות FOREIGN KEY לשמירה על שלמות הקשרים במסד הנתונים.
+- **שימוש בערכים מוגבלים (Enums)**: שדות מסוימים כמו `status` ו־`stage` מוגבלים לערכים תקפים בלבד.
+
+---
+
+## 3. תהליך העבודה והפקודות
+
+```sql
+-- יצירת טבלת משתתפים (שחקנים/קבוצות)
+CREATE TABLE Participants (
+    participant_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    type VARCHAR(10) CHECK (type IN ('Team', 'Player')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- יצירת טבלת טורנירים
+CREATE TABLE Tournaments (
+    tournament_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    stage VARCHAR(20) CHECK (stage IN ('Group', 'Quarterfinal', 'Semifinal', 'Final')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- יצירת טבלת משחקים
+CREATE TABLE Matches (
+    match_id SERIAL PRIMARY KEY,
+    tournament_id INT REFERENCES Tournaments(tournament_id),
+    participant1_id INT REFERENCES Participants(participant_id),
+    participant2_id INT REFERENCES Participants(participant_id),
+    match_date DATE NOT NULL,
+    status VARCHAR(20) CHECK (status IN ('Scheduled', 'Ongoing', 'Completed')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- הזנת משתתפים לדוגמה
+INSERT INTO Participants (name, type) VALUES
+('Team A', 'Team'),
+('Team B', 'Team'),
+('Player 1', 'Player'),
+('Player 2', 'Player');
+
+-- הזנת טורניר לדוגמה
+INSERT INTO Tournaments (name, stage) VALUES
+('World Cup 2025', 'Group');
+
+-- הזנת משחק לדוגמה
+INSERT INTO Matches (tournament_id, participant1_id, participant2_id, match_date, status) VALUES
+(1, 1, 2, '2025-06-15', 'Scheduled');
+```
+
+---
+
+## 4. מבטים (Views)
+
+### מבט: Upcoming_Matches
+
+**תיאור**: מבט זה מציג את כלל המשחקים שטרם התקיימו (סטטוס: Scheduled), כולל שמות המשתתפים ותאריך המשחק.
+
+```sql
+-- יצירת מבט למשחקים עתידיים
+CREATE VIEW Upcoming_Matches AS
+SELECT
+    m.match_id,
+    p1.name AS participant1,
+    p2.name AS participant2,
+    m.match_date,
+    m.status
+FROM Matches m
+JOIN Participants p1 ON m.participant1_id = p1.participant_id
+JOIN Participants p2 ON m.participant2_id = p2.participant_id
+WHERE m.status = 'Scheduled';
+```
+
+### שליפת נתונים לדוגמה מהמבט
+
+```sql
+SELECT * FROM Upcoming_Matches LIMIT 10;
+```
+
+**פלט לדוגמה:**
+
+| match_id | participant1 | participant2 | match_date | status    |
+|----------|--------------|--------------|------------|-----------|
+| 1        | Team A       | Team B       | 2025-06-15 | Scheduled |
+
+---
+
+## 5. שאילתות על מבטים
+
+### שאילתה 1: מספר משחקים מתוכננים לכל משתתף
+
+**תיאור**: שאילתה זו מחשבת כמה משחקים מתוכננים (Scheduled) יש לכל משתתף לפי הופעה במבט Upcoming_Matches.
+
+```sql
+SELECT
+    p.name,
+    COUNT(*) AS scheduled_matches
+FROM Upcoming_Matches um
+JOIN Participants p ON um.participant1 = p.name OR um.participant2 = p.name
+GROUP BY p.name;
+```
+
+**פלט לדוגמה:**
+
+| name    | scheduled_matches |
+|---------|-------------------|
+| Team A  | 1                 |
+| Team B  | 1                 |
+
+---
+
+**הערה**: ניתן לעיין בקוד המקור המלא, טבלאות נוספות, וקבצי תרשימים נוספים במאגר GitHub:  
+[DBProject_214955064_214801771](https://github.com/ruchamabricker/DBProject_214955064_214801771)
