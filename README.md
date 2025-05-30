@@ -15,6 +15,7 @@
 
 - [Stage 1 Report](#stage-1)
 - [Stage 2 Report](#stage-2)
+- [Stage 3 Report](#stage-3)
 
 ---
 
@@ -679,40 +680,52 @@ VALUES ('Unicorn FC', 'Magical Coach', 'A', 199, 'Pink');
 - The system maintains data consistency through proper use of foreign keys, data types, and constraints.
 
 
-# שלב 3 – אינטגרציה, מבטים ושאילתות
-
-## תוכן העניינים
-
-1. תרשימי ERD ו-DSD  
-2. החלטות אינטגרציה  
-3. תהליך העבודה והפקודות  
-4. מבטים (Views)  
-5. שאילתות על מבטים  
+## Stage 3
 
 ---
 
-## 1. תרשימי ERD ו-DSD
+## Table of Contents:
+1. [ERD and DNS diagrams](#erd-and-dns-diagrams)
+2. [Integration decisions](#integration-decisions)
+3. [Workflow and Commands](#workflow-and-commands)
+4. [Views](#views)
+5. [View Queries](#view-queries)
 
-להלן תרשימי ה-ERD וה-DSD המעודכנים לאחר שלב האינטגרציה:
+---
+
+## ERD and DNS diagrams
+
+---
+
+Below are the updated ERD and DSD diagrams after the integration phase:
 
 ![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/ERD/erd_integration.png?raw=true)  
 ![DSD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/DSD/DSD_INTEGRATION.png?raw=true)
 
+---
+
+## Integration decisions
 
 ---
 
-## 2. החלטות אינטגרציה
+During the integration phase, the following decisions were made:
 
-במהלך שלב האינטגרציה, התקבלו ההחלטות הבאות:
+1. **Combining entities from both models:** All entities from our model (`Teams`, `Players`, `Matches`, `MatchEvents`, `Stadiums`, `TournamentStages`) and the new model (`Athlet`, `Sport`, `Competition`, `Country`, `Venue`, `ticket`) are included in the merged ERD diagram.
+2. **Entity renaming:** The entity `TournamentStages` from our model has been renamed to `Stage` in the merged model.
+3. **Creating Linking Relationships between Parallel Entities:** We added new relationships that connect entities that represent similar concepts in the two original models:
+* **Relationship between `Athlet` and `Players`:** We created a relationship called `AthleteMatches` that connects the entity `Athlet` (from the new model, which represents an athlete in general) and the entity `Players` (from our model, which represents soccer players). This allows us to see that a soccer player is a specific type of athlete.
+* **Relationship between `Teams` and `Country`:** We created a relationship called `TeamOfCountry` that connects the entity `Teams` (from our model, which represents teams/national teams) and the entity `Country` (from the new model, which represents countries). This makes sense because national soccer teams represent countries.
+4. **Integrating specific concepts (football) into a general structure (competition):** We added relationships that integrate football-specific entities (`Matches`, `Stage`) into the more general `Competition` framework from the Olympics model:
+* **Relationship between `Stage` and `Competition`:** We created a relationship called `StageInCompetition` that connects the entity `Stage` (tournament stages, such as group stage, round of 16, etc.) to the entity `Competition`. This places the tournament stages within the context of the larger competition.
+5. **Preserving existing relationships and attributes:** Most of the relationships that existed in the original models (e.g. `PlayerInTeam`, `Team1InMatch`, `EventInMatch`, `SportInCompetition`, etc.) and the attributes of the entities have also been preserved in the unified model.
 
-- **איחוד טבלאות**: טבלאות `Players` ו־`Teams` אוחדו לטבלה אחת בשם `Participants` לצורך פשטות וניהול אחיד של ישויות משתתפות.
-- **הוספת שדות תיעוד**: לכל טבלה נוספו שדות `created_at` ו־`updated_at` לצורך מעקב אחר תיעוד השינויים.
-- **קשרים עם מפתחות זרים**: הוגדרו קשרים בין טבלאות באמצעות FOREIGN KEY לשמירה על שלמות הקשרים במסד הנתונים.
-- **שימוש בערכים מוגבלים (Enums)**: שדות מסוימים כמו `status` ו־`stage` מוגבלים לערכים תקפים בלבד.
+Overall, the main changes are adding the missing entities and relationships from each model to the unified model, and creating new relationships between the corresponding or related entities from each of the original models to create a single linked network representing the information from both domains in a single system.
 
 ---
 
-## 3. תהליך העבודה והפקודות
+## Workflow and Commands
+
+---
 
 ```sql
 -- יצירת טבלת משתתפים (שחקנים/קבוצות)
