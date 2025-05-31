@@ -685,7 +685,7 @@ VALUES ('Unicorn FC', 'Magical Coach', 'A', 199, 'Pink');
 ---
 
 ## Table of Contents:
-1. [ERD and DNS diagrams](#erd-and-dns-diagrams)
+1. [ERD and DSD diagrams](#erd-and-dsd-diagrams)
 2. [Integration decisions](#integration-decisions)
 3. [Workflow and Commands](#workflow-and-commands)
 4. [Views](#views)
@@ -693,7 +693,7 @@ VALUES ('Unicorn FC', 'Magical Coach', 'A', 199, 'Pink');
 
 ---
 
-## ERD and DNS diagrams
+## ERD and DSD diagrams
 
 ---
 
@@ -728,112 +728,177 @@ Overall, the main changes are adding the missing entities and relationships from
 ---
 
 ```sql
--- יצירת טבלת משתתפים (שחקנים/קבוצות)
-CREATE TABLE Participants (
-    participant_id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    type VARCHAR(10) CHECK (type IN ('Team', 'Player')),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
 
--- יצירת טבלת טורנירים
-CREATE TABLE Tournaments (
-    tournament_id SERIAL PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    stage VARCHAR(20) CHECK (stage IN ('Group', 'Quarterfinal', 'Semifinal', 'Final')),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+--Example of creating an inheritance between a player and a team
+CREATE SEQUENCE IF NOT EXISTS athlete_athleteid_seq;
+ALTER TABLE athlete ALTER COLUMN athleteid SET DEFAULT nextval('athlete_athleteid_seq');
+SELECT setval('athlete_athleteid_seq', (SELECT COALESCE(MAX(athleteid), 0) FROM athlete));
 
--- יצירת טבלת משחקים
-CREATE TABLE Matches (
-    match_id SERIAL PRIMARY KEY,
-    tournament_id INT REFERENCES Tournaments(tournament_id),
-    participant1_id INT REFERENCES Participants(participant_id),
-    participant2_id INT REFERENCES Participants(participant_id),
-    match_date DATE NOT NULL,
-    status VARCHAR(20) CHECK (status IN ('Scheduled', 'Ongoing', 'Completed')),
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+ALTER TABLE players ADD COLUMN athleteid INTEGER;
 
--- הזנת משתתפים לדוגמה
-INSERT INTO Participants (name, type) VALUES
-('Team A', 'Team'),
-('Team B', 'Team'),
-('Player 1', 'Player'),
-('Player 2', 'Player');
+--Example of creating a connection between a country and a group
+ALTER TABLE teams ADD COLUMN country_id INTEGER;
 
--- הזנת טורניר לדוגמה
-INSERT INTO Tournaments (name, stage) VALUES
-('World Cup 2025', 'Group');
+UPDATE teams t
+SET country_id = c.countryid
+FROM country c
+WHERE t.team_name = c.countryname;
 
--- הזנת משחק לדוגמה
-INSERT INTO Matches (tournament_id, participant1_id, participant2_id, match_date, status) VALUES
-(1, 1, 2, '2025-06-15', 'Scheduled');
+--Example of adding a relationship between a team and a country
+ALTER TABLE teams
+ADD CONSTRAINT teams_country_id_fkey
+FOREIGN KEY (country_id)
+REFERENCES country(countryid)
+ON DELETE SET NULL;
+
+--Example of adding a relationship between a player and an athlete
+ALTER TABLE players
+ADD CONSTRAINT player_athlete_id_fkey
+FOREIGN KEY (athleteid)
+REFERENCES athlete(athleteid)
+ON DELETE SET NULL;
+
 ```
 
 ---
 
-## 4. מבטים (Views)
+## Views
 
-### מבט: Upcoming_Matches
+---
 
-**תיאור**: מבט זה מציג את כלל המשחקים שטרם התקיימו (סטטוס: Scheduled), כולל שמות המשתתפים ותאריך המשחק.
+### View 1# - view_athletes_matches
+
+**Description**:
+This view, view_athletes_matches, provides a summary of athlete participation in matches. It shows each athlete's name and ID, the match they participated in (by ID and date), their rank in the match, any medal they received, and whether they played as a substitute.
 
 ```sql
--- יצירת מבט למשחקים עתידיים
-CREATE VIEW Upcoming_Matches AS
+CREATE OR REPLACE VIEW view_athletes_matches AS
 SELECT
-    m.match_id,
-    p1.name AS participant1,
-    p2.name AS participant2,
+    am.athlete_id,
+    a.athlete_name,
+    am.match_id,
     m.match_date,
-    m.status
-FROM Matches m
-JOIN Participants p1 ON m.participant1_id = p1.participant_id
-JOIN Participants p2 ON m.participant2_id = p2.participant_id
-WHERE m.status = 'Scheduled';
+    am.athlete_rank,
+    am.medal,
+    am.is_substitute
+FROM athlete_match am
+JOIN athletes a ON am.athlete_id = a.athlete_id
+JOIN matches m ON am.match_id = m.match_id;
 ```
 
-### שליפת נתונים לדוגמה מהמבט
+### Retrieving data from it with select *
 
 ```sql
-SELECT * FROM Upcoming_Matches LIMIT 10;
+SELECT * FROM public.view_athletes_matches
 ```
 
-**פלט לדוגמה:**
+### Output example
 
-| match_id | participant1 | participant2 | match_date | status    |
-|----------|--------------|--------------|------------|-----------|
-| 1        | Team A       | Team B       | 2025-06-15 | Scheduled |
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/Views/athlete_matches_view.png)  
 
 ---
 
-## 5. שאילתות על מבטים
+### View 2# - view_competition_stages
 
-### שאילתה 1: מספר משחקים מתוכננים לכל משתתף
-
-**תיאור**: שאילתה זו מחשבת כמה משחקים מתוכננים (Scheduled) יש לכל משתתף לפי הופעה במבט Upcoming_Matches.
+**Description**:
+This view, view_competition_stages, displays the stages within each competition. It includes the competition's ID, name, and date, along with the corresponding stage's ID, name, and start date. It helps link each competition to its individual stages.
 
 ```sql
+CREATE OR REPLACE VIEW view_competition_stages AS
 SELECT
-    p.name,
-    COUNT(*) AS scheduled_matches
-FROM Upcoming_Matches um
-JOIN Participants p ON um.participant1 = p.name OR um.participant2 = p.name
-GROUP BY p.name;
+    c.competition_id,
+    c.competition_name,
+    c.comp_date,
+    s.stage_id,
+    s.name,
+    s.start_date
+FROM competitions c
+JOIN stages s ON c.competition_id = s.competition_id;
 ```
 
-**פלט לדוגמה:**
+### Retrieving data from it with select *
 
-| name    | scheduled_matches |
-|---------|-------------------|
-| Team A  | 1                 |
-| Team B  | 1                 |
+```sql
+SELECT * FROM public.view_competition_stages
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/Views/view_competition_stages.png)  
 
 ---
 
-**הערה**: ניתן לעיין בקוד המקור המלא, טבלאות נוספות, וקבצי תרשימים נוספים במאגר GitHub:  
-[DBProject_214955064_214801771](https://github.com/ruchamabricker/DBProject_214955064_214801771)
+## View Queries
+
+---
+
+### Query 1: 
+
+**Description**:
+This query retrieves a list of athletes who participated in matches as substitutes. It selects the athlete's name, the match ID, and confirms that the athlete was a substitute by filtering only rows where is_substitute = true from the view_athletes_matches view.
+
+```sql
+SELECT athlete_name, match_id, is_substitute
+FROM view_athletes_matches
+WHERE is_substitute = true;
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/Views/q1.png)  
+
+---
+
+### Query 2: 
+
+**Description**:
+This query returns a list of athletes who received medals in matches. It selects the athlete’s name, match ID, rank in the match, and the medal they received. Only records where a medal is present (medal IS NOT NULL) are included, and the results are sorted by athlete_rank in ascending order.
+
+```sql
+SELECT athlete_name, match_id, athlete_rank, medal
+FROM view_athletes_matches
+WHERE medal IS NOT NULL
+ORDER BY athlete_rank;
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/Views/q2.png)  
+
+---
+
+### Query 3: 
+
+**Description**:
+This query retrieves the names and start dates of all stages that belong to the competition with ID 1. The results are ordered by start_date in ascending order, showing the timeline of the competition's stages.
+
+```sql
+SELECT name, start_date
+FROM view_competition_stages
+WHERE competition_id = 1
+ORDER BY start_date;
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/Views/q3.png)  
+
+---
+
+### Query 4: 
+
+**Description**:
+This query returns the number of stages for each competition. It selects the competition name and counts how many stages (stage_id) are associated with it. The results are grouped by competition_name and sorted in descending order by the number of stages (total_stages).
+
+```sql
+SELECT competition_name, COUNT(stage_id) AS total_stages
+FROM view_competition_stages
+GROUP BY competition_name
+ORDER BY total_stages DESC;
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/Views/q4.png)  
+
+---
