@@ -15,6 +15,7 @@
 
 - [Stage 1 Report](#stage-1)
 - [Stage 2 Report](#stage-2)
+- [Stage 3 Report](#stage-3)
 
 ---
 
@@ -677,3 +678,162 @@ VALUES ('Unicorn FC', 'Magical Coach', 'A', 199, 'Pink');
 
 - All constraints were tested using invalid INSERT statements, resulting in runtime errors as expected.
 - The system maintains data consistency through proper use of foreign keys, data types, and constraints.
+
+
+## Stage 3
+
+---
+
+## Table of Contents:
+1. [ERD and DNS diagrams](#erd-and-dns-diagrams)
+2. [Integration decisions](#integration-decisions)
+3. [Workflow and Commands](#workflow-and-commands)
+4. [Views](#views)
+5. [View Queries](#view-queries)
+
+---
+
+## ERD and DNS diagrams
+
+---
+
+Below are the updated ERD and DSD diagrams after the integration phase:
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/ERD/erd_integration.png?raw=true)  
+![DSD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/DSD/DSD_INTEGRATION.png?raw=true)
+
+---
+
+## Integration decisions
+
+---
+
+During the integration phase, the following decisions were made:
+
+1. **Combining entities from both models:** All entities from our model (`Teams`, `Players`, `Matches`, `MatchEvents`, `Stadiums`, `TournamentStages`) and the new model (`Athlet`, `Sport`, `Competition`, `Country`, `Venue`, `ticket`) are included in the merged ERD diagram.
+2. **Entity renaming:** The entity `TournamentStages` from our model has been renamed to `Stage` in the merged model.
+3. **Creating Linking Relationships between Parallel Entities:** We added new relationships that connect entities that represent similar concepts in the two original models:
+* **Relationship between `Athlet` and `Players`:** We created a relationship called `AthleteMatches` that connects the entity `Athlet` (from the new model, which represents an athlete in general) and the entity `Players` (from our model, which represents soccer players). This allows us to see that a soccer player is a specific type of athlete.
+* **Relationship between `Teams` and `Country`:** We created a relationship called `TeamOfCountry` that connects the entity `Teams` (from our model, which represents teams/national teams) and the entity `Country` (from the new model, which represents countries). This makes sense because national soccer teams represent countries.
+4. **Integrating specific concepts (football) into a general structure (competition):** We added relationships that integrate football-specific entities (`Matches`, `Stage`) into the more general `Competition` framework from the Olympics model:
+* **Relationship between `Stage` and `Competition`:** We created a relationship called `StageInCompetition` that connects the entity `Stage` (tournament stages, such as group stage, round of 16, etc.) to the entity `Competition`. This places the tournament stages within the context of the larger competition.
+5. **Preserving existing relationships and attributes:** Most of the relationships that existed in the original models (e.g. `PlayerInTeam`, `Team1InMatch`, `EventInMatch`, `SportInCompetition`, etc.) and the attributes of the entities have also been preserved in the unified model.
+
+Overall, the main changes are adding the missing entities and relationships from each model to the unified model, and creating new relationships between the corresponding or related entities from each of the original models to create a single linked network representing the information from both domains in a single system.
+
+---
+
+## Workflow and Commands
+
+---
+
+```sql
+-- יצירת טבלת משתתפים (שחקנים/קבוצות)
+CREATE TABLE Participants (
+    participant_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    type VARCHAR(10) CHECK (type IN ('Team', 'Player')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- יצירת טבלת טורנירים
+CREATE TABLE Tournaments (
+    tournament_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    stage VARCHAR(20) CHECK (stage IN ('Group', 'Quarterfinal', 'Semifinal', 'Final')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- יצירת טבלת משחקים
+CREATE TABLE Matches (
+    match_id SERIAL PRIMARY KEY,
+    tournament_id INT REFERENCES Tournaments(tournament_id),
+    participant1_id INT REFERENCES Participants(participant_id),
+    participant2_id INT REFERENCES Participants(participant_id),
+    match_date DATE NOT NULL,
+    status VARCHAR(20) CHECK (status IN ('Scheduled', 'Ongoing', 'Completed')),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- הזנת משתתפים לדוגמה
+INSERT INTO Participants (name, type) VALUES
+('Team A', 'Team'),
+('Team B', 'Team'),
+('Player 1', 'Player'),
+('Player 2', 'Player');
+
+-- הזנת טורניר לדוגמה
+INSERT INTO Tournaments (name, stage) VALUES
+('World Cup 2025', 'Group');
+
+-- הזנת משחק לדוגמה
+INSERT INTO Matches (tournament_id, participant1_id, participant2_id, match_date, status) VALUES
+(1, 1, 2, '2025-06-15', 'Scheduled');
+```
+
+---
+
+## 4. מבטים (Views)
+
+### מבט: Upcoming_Matches
+
+**תיאור**: מבט זה מציג את כלל המשחקים שטרם התקיימו (סטטוס: Scheduled), כולל שמות המשתתפים ותאריך המשחק.
+
+```sql
+-- יצירת מבט למשחקים עתידיים
+CREATE VIEW Upcoming_Matches AS
+SELECT
+    m.match_id,
+    p1.name AS participant1,
+    p2.name AS participant2,
+    m.match_date,
+    m.status
+FROM Matches m
+JOIN Participants p1 ON m.participant1_id = p1.participant_id
+JOIN Participants p2 ON m.participant2_id = p2.participant_id
+WHERE m.status = 'Scheduled';
+```
+
+### שליפת נתונים לדוגמה מהמבט
+
+```sql
+SELECT * FROM Upcoming_Matches LIMIT 10;
+```
+
+**פלט לדוגמה:**
+
+| match_id | participant1 | participant2 | match_date | status    |
+|----------|--------------|--------------|------------|-----------|
+| 1        | Team A       | Team B       | 2025-06-15 | Scheduled |
+
+---
+
+## 5. שאילתות על מבטים
+
+### שאילתה 1: מספר משחקים מתוכננים לכל משתתף
+
+**תיאור**: שאילתה זו מחשבת כמה משחקים מתוכננים (Scheduled) יש לכל משתתף לפי הופעה במבט Upcoming_Matches.
+
+```sql
+SELECT
+    p.name,
+    COUNT(*) AS scheduled_matches
+FROM Upcoming_Matches um
+JOIN Participants p ON um.participant1 = p.name OR um.participant2 = p.name
+GROUP BY p.name;
+```
+
+**פלט לדוגמה:**
+
+| name    | scheduled_matches |
+|---------|-------------------|
+| Team A  | 1                 |
+| Team B  | 1                 |
+
+---
+
+**הערה**: ניתן לעיין בקוד המקור המלא, טבלאות נוספות, וקבצי תרשימים נוספים במאגר GitHub:  
+[DBProject_214955064_214801771](https://github.com/ruchamabricker/DBProject_214955064_214801771)
