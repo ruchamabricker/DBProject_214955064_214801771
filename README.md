@@ -913,6 +913,7 @@ ORDER BY total_stages DESC;
 2. [Procedures](#procedures)
 3. [Triggers](#triggers)
 4. [Main programs](#main-programs)
+5. [Proofs](#proofs)
 
 ---
 
@@ -1201,3 +1202,21 @@ $$;
 ### Output example
 
 ![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Main%20programs/m2.png) 
+
+---
+
+## Proofs
+
+---
+
+**Description**:
+This confirms that running this query correctly throws the expected exception.
+
+```sql
+INSERT INTO matches(match_id, team1_id, team2_id)
+VALUES (100, 5, 5);
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Proofs/p2.png) 
