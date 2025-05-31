@@ -16,6 +16,7 @@
 - [Stage 1 Report](#stage-1)
 - [Stage 2 Report](#stage-2)
 - [Stage 3 Report](#stage-3)
+- [Stage 4 Report](#stage-4)
 
 ---
 
@@ -902,3 +903,301 @@ ORDER BY total_stages DESC;
 ![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/Views/q4.png)  
 
 ---
+
+## Stage 4
+
+---
+
+## Table of Contents:
+1. [Functions](#functions)
+2. [Procedures](#procedures)
+3. [Triggers](#triggers)
+4. [Main programs](#main-programs)
+
+---
+
+## Functions
+
+---
+
+### Function #1 - get_total_goals
+
+**Description**:
+This function, get_total_goals, takes an athlete's ID as input and returns the total number of goals scored by that athlete, based on data from the players table. If an error occurs, it returns 0 and logs the error message.
+
+```sql
+CREATE OR REPLACE FUNCTION get_total_goals(ath_id INTEGER)
+RETURNS INTEGER AS $$
+DECLARE
+    total_goals INTEGER;
+BEGIN
+    SELECT COALESCE(SUM(goals), 0)
+    INTO total_goals
+    FROM players
+    WHERE athlete_id = ath_id;
+
+    RETURN total_goals;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in get_total_goals: %', SQLERRM;
+        RETURN 0;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Functions/f1.png) 
+
+---
+
+### Function #2 - get_country_info
+
+**Description**:
+This function, get_country_info, takes a country name as input and returns a cursor pointing to all rows in the country table where the country name matches the input (case-insensitive). If an error occurs, it logs the error and returns NULL.
+
+```sql
+CREATE OR REPLACE FUNCTION get_country_info(country_name_in TEXT)
+RETURNS REFCURSOR AS $$
+DECLARE
+    ref refcursor;
+BEGIN
+    OPEN ref FOR
+    SELECT *
+    FROM country
+    WHERE country_name ILIKE country_name_in;
+
+    RETURN ref;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in get_country_info: %', SQLERRM;
+        RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Functions/f2.png) 
+
+---
+
+## Procedures
+
+---
+
+### Procedure #1 - update_fifa_ranking
+
+**Description**:
+This procedure, update_fifa_ranking, takes a team ID and a new FIFA ranking as input, and updates the corresponding team's ranking in the teams table. If an error occurs, it logs the error message.
+
+```sql
+CREATE OR REPLACE PROCEDURE update_fifa_ranking(team_id_in INTEGER, new_rank INTEGER)
+AS $$
+BEGIN
+    UPDATE teams
+    SET fifa_ranking = new_rank
+    WHERE team_id = team_id_in;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in update_fifa_ranking: %', SQLERRM;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Producers/p1.png) 
+
+---
+
+
+### Procedure #2 - assign_medal
+
+**Description**:
+The assign_medal procedure assigns a medal to an athlete for a specific match. If a record already exists for the athlete and match in the athlete_match table, it updates the medal. Otherwise, it inserts a new record with the given medal. If an error occurs, it logs the error message.
+
+```sql
+CREATE OR REPLACE PROCEDURE assign_medal(
+    ath_id INTEGER,
+    match_id_in INTEGER,
+    medal_type VARCHAR
+)
+AS $$
+DECLARE
+    exists_record BOOLEAN;
+BEGIN
+    SELECT EXISTS (
+        SELECT 1
+        FROM athlete_match
+        WHERE athlete_id = ath_id AND match_id = match_id_in
+    )
+    INTO exists_record;
+
+    IF exists_record THEN
+        UPDATE athlete_match
+        SET medal = medal_type
+        WHERE athlete_id = ath_id AND match_id = match_id_in;
+    ELSE
+        INSERT INTO athlete_match(athlete_id, match_id, medal, athlete_rank, is_substitute)
+        VALUES (ath_id, match_id_in, medal_type, NULL, FALSE);
+    END IF;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in assign_medal: %', SQLERRM;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Producers/p2.png) 
+
+---
+
+## Triggers
+
+---
+
+### Trigger #1 - update_country_medals
+
+**Description**:
+The update_country_medals trigger function updates the total number of medals for a country when a new medal is assigned to an athlete. The trigger trg_update_medals runs this function automatically after a new row with a non-null medal is inserted into the athlete_match table. If an error occurs, it logs the error and continues.
+
+```sql
+CREATE OR REPLACE FUNCTION update_country_medals()
+RETURNS TRIGGER AS $$
+DECLARE
+    c_id INTEGER;
+BEGIN
+    SELECT country_id INTO c_id
+    FROM athletes
+    WHERE athlete_id = NEW.athlete_id;
+
+    UPDATE countries
+    SET total_medals = COALESCE(total_medals, 0) + 1
+    WHERE country_id = c_id;
+
+    RETURN NEW;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in update_country_medals: %', SQLERRM;
+        RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER trg_update_medals
+AFTER INSERT ON athlete_match
+FOR EACH ROW
+WHEN (NEW.medal IS NOT NULL)
+EXECUTE FUNCTION update_country_medals();
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Triggers/t1.png) 
+
+---
+
+### Trigger #2 - check_teams_different
+
+**Description**:
+The check_teams_different trigger function ensures that a match does not have the same team assigned to both sides. If team1_id and team2_id are equal, it raises an exception. The trigger trg_check_teams runs this function before a new match is inserted into the matches table. If an error occurs, it logs the error and proceeds.
+
+```sql
+CREATE OR REPLACE FUNCTION check_teams_different()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.team1_id = NEW.team2_id THEN
+        RAISE EXCEPTION 'A team cannot play against itself';
+    END IF;
+    RETURN NEW;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in check_teams_different: %', SQLERRM;
+        RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_check_teams
+BEFORE INSERT ON matches
+FOR EACH ROW
+EXECUTE FUNCTION check_teams_different();
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Triggers/t2.png) 
+
+---
+
+## Main programs
+
+---
+
+### Main program #1
+
+**Description**:
+This anonymous PL/pgSQL block calls the update_fifa_ranking procedure to update the FIFA ranking of team 1 to 15, then calls the get_total_goals function to calculate the total goals scored by athlete 405. It displays the result with a notice. If any error occurs during execution, it logs the error message.
+
+```sql
+DO $$
+DECLARE
+    total INTEGER;
+BEGIN
+    CALL update_fifa_ranking(1, 15);
+    total := get_total_goals(405);
+    RAISE NOTICE 'Total goals: %', total;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in main block 1: %', SQLERRM;
+END;
+$$;
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Main%20programs/m1.png) 
+
+---
+
+### Main program #2
+
+**Description**:
+This anonymous PL/pgSQL block calls the assign_medal procedure to assign a gold medal to athlete 1 for match 1, then retrieves information about the country "Egypt" using the get_country_info function. It loops through the result set, printing each country's name and total medals. If an error occurs, it logs the error message.
+
+```sql
+DO $$
+DECLARE
+    ref refcursor;
+    rec RECORD;
+BEGIN
+    CALL assign_medal(1, 1, 'GOLD');
+    ref := get_country_info('Egypt');
+
+    LOOP
+        FETCH ref INTO rec;
+        EXIT WHEN NOT FOUND;
+        RAISE NOTICE 'Country: %, Medals: %', rec.country_name, rec.total_medals;
+    END LOOP;
+
+    CLOSE ref;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in main block 2: %', SQLERRM;
+END;
+$$;
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Main%20programs/m2.png) 
