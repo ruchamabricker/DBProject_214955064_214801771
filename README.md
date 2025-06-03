@@ -722,6 +722,7 @@ During the integration phase, the following decisions were made:
 
 Overall, the main changes are adding the missing entities and relationships from each model to the unified model, and creating new relationships between the corresponding or related entities from each of the original models to create a single linked network representing the information from both domains in a single system.
 
+see the integration file: [integration](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/integrations.sql)
 ---
 
 ## Workflow and Commands
