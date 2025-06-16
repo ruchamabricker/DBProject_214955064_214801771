@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Match Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: ltr;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .match-card {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .detail-row {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .section-title {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+            color: #555;
+        }
+
+        .team-block,
+        .athlete-block {
+            background-color: #f9f9f9;
+            border-left: 5px solid #3498db;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        .back-button {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .back-button button {
+            padding: 10px 16px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .winning-team {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+            box-shadow: 0 0 10px #28a745aa;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="back-button">
+        <button onclick="location.href='/matches'"><i class="fas fa-arrow-left"></i> Back to Matches</button>
+    </div>
+    <br />
+    <div class="match-card">
+
+        <h1>Match Details</h1>
+        <div style="text-align: center; margin-top: 20px;">
+            <button onclick="openTicketModal()"
+                style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 8px; font-size: 16px; cursor: pointer;">
+                Buy a ticket
+            </button>
+        </div>
+        <div class="detail-row"><strong>Date:</strong> {{ match.match_date }}</div>
+        <div class="detail-row"><strong>Venue:</strong> {{ match.venue_name }} (Capacity: {{ match.venue_capacity }})
+
+        </div>
+        <div class="detail-row"><strong>Venue id:</strong> {{ match.venue_id }}</div>
+        <div class="detail-row"><strong>Sport:</strong> {{ match.sport_name }}</div>
+        <div class="detail-row"><strong>Competition:</strong> {{ match.competition_name }}</div>
+        <div class="detail-row"><strong>Stage:</strong> {{ match.stage_name }}</div>
+        <div class="detail-row"><strong>Tickets Sold:</strong> {{ match.tickets_sold }}</div>
+        <div class="detail-row"><strong>Ticket Price:</strong> ${{ match.ticket_price }}</div>
+
+        {% if match.is_team_sport %}
+        <div class="section-title">Teams</div>
+        {% for team in match.teams %}
+        <div class="team-block {% if team.team_id == match.winning_team_id %}winning-team{% endif %}">
+            <strong>{{ team.name }}</strong><br>
+            Coach: {{ team.coach }}<br>
+            Score: {{ team.score }}
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="section-title">Athletes</div>
+        {% for athlete in match.athletes %}
+        <div class="athlete-block">
+            <strong>{{ athlete.name }}</strong> ({{ athlete.country }})<br>
+            Rank: {{ athlete.rank }} | Medal: {{ athlete.medal }}
+        </div>
+        {% endfor %}
+        <div class="detail-row"><strong>Winner:</strong> {{ match.winner }}</div>
+        {% endif %}
+    </div>
+    <!-- Modal for ticket purchase -->
+    <div id="ticketModal"
+        style="display:none; position: fixed; top:0; left:0; width:100%; height:100%; background-color: rgba(0,0,0,0.5);">
+        <div
+            style="background:#fff; max-width:400px; margin:100px auto; padding:20px; border-radius:8px; position: relative;">
+            <h2>Buy Ticket</h2>
+            <form id="ticketForm" method="POST" action="/matches/purchase_ticket/{{ match.match_id }}">
+
+                <input type="hidden" name="match_date" value="{{ match.match_date }}">
+                <input type="hidden" name="ticket_price" value="{{ match.ticket_price }}">
+                <input type="hidden" name="venue_id" value="{{ match.venue_id }}">
+
+                <div class="detail-row"><strong>Ticket Price:</strong> ${{ match.ticket_price }}</div>
+                <button onclick="document.getElementById('ticketForm').submit();" type="button"
+                    style="background-color:#28a745; color:white; padding:10px 16px; border:none; border-radius:6px; cursor:pointer;">
+                    Purchase
+                </button>
+
+
+                <button type="button" onclick="closeTicketModal()" style="margin-left:10px;">Cancel</button>
+
+            </form>
+            <div id="purchaseMessage" style="margin-top:10px; color: green;"></div>
+        </div>
+    </div>
+
+    <script>
+        function openTicketModal() {
+            document.getElementById('ticketModal').style.display = 'block';
+        }
+
+        function closeTicketModal() {
+            document.getElementById('ticketModal').style.display = 'none';
+            document.getElementById('purchaseMessage').innerText = '';
+            document.getElementById('ticketForm').reset();
+        }
+
+
+    </script>
+
+</body>
+
+</html>

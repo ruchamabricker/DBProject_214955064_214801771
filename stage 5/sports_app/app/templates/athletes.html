@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Athletes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: ltr;
+            background-color: #f2f2f2;
+        }
+
+        .controls {
+            margin: 20px;
+        }
+
+        .controls input,
+        .controls select {
+            padding: 8px;
+            margin-right: 10px;
+            font-size: 16px;
+        }
+
+        .athlete-card {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 16px;
+            width: 220px;
+            display: inline-block;
+            vertical-align: top;
+            background-color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .male {
+            border-left: 5px solid #2196f3;
+        }
+
+        .female {
+            border-left: 5px solid #e91e63;
+        }
+
+        .athlete-name {
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-bottom: 5px;
+        }
+
+        .athlete-card:hover {
+            background-color: #e0f7fa;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .no-results {
+            margin: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+            display: none;
+        }
+
+        .back-button {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .filter-panel {
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-panel label {
+            font-weight: bold;
+            margin-right: 5px;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-panel input,
+        .filter-panel select {
+            padding: 10px;
+            border: 1px solid #bbb;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            .filter-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="back-button">
+        <button onclick="location.href='/'"
+            style="padding: 10px 16px; font-size: 16px; background-color: #3498db; color: white; border: none; border-radius: 8px; cursor: pointer;">
+            <i class="fas fa-home" style="margin-right: 8px;"></i>Home
+        </button>
+    </div>
+    <div class="filter-panel">
+        <form method="get" action="{{ url_for('athlete.athletes_by_month') }}" class="filter-group" style="margin: 0;">
+            <label for="monthSelect"><i class="fas fa-calendar-alt"></i></label>
+            <select name="month" id="monthSelect" onchange="this.form.submit()">
+                <option value="" {% if selected_month=="" %}selected{% endif %}>All Months</option>
+                {% for i in range(1, 13) %}
+                <option value="{{ i }}" {% if selected_month==i|string %}selected{% endif %}>{{ i }}</option>
+                {% endfor %}
+            </select>
+        </form>
+
+        <div class="filter-group">
+            <label for="searchInput"><i class="fas fa-search"></i></label>
+            <input type="text" id="searchInput" placeholder="Search with Name or Country..." oninput="filterAthletes()">
+        </div>
+
+        <div class="filter-group">
+            <label for="genderFilter"><i class="fas fa-venus-mars"></i></label>
+            <select id="genderFilter" onchange="filterAthletes()">
+                <option value="">All</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="no-results" id="noResults">NO RESULTS</div>
+
+    <div class="container" id="athleteContainer">
+        {% for athlete in athletes %}
+        <a href="/athlete/{{ athlete.id }}"
+            class="athlete-card {% if athlete.gender == 'male' %}male{% else %}female{% endif %}"
+            data-name="{{ athlete.name|lower }}" data-country="{{ athlete.country|lower }}"
+            data-gender="{{ athlete.gender }}">
+            <div class="athlete-name">{{ athlete.name }}</div>
+            <div>Age: {{ athlete.age }}</div>
+            <div>Gender: {{ 'Male' if athlete.gender == 'male' else 'Female' }}</div>
+            <div>Country: {{ athlete.country }}</div>
+        </a>
+        {% endfor %}
+    </div>
+
+
+    <script>
+        function filterAthletes() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const gender = document.getElementById('genderFilter').value;
+            const cards = document.querySelectorAll('.athlete-card');
+            const noResults = document.getElementById('noResults');
+
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const name = card.dataset.name;
+                const country = card.dataset.country;
+                const cardGender = card.dataset.gender;
+
+                const matchesText = name.includes(input) || country.includes(input);
+                const matchesGender = gender === "" || cardGender === gender;
+
+                const isVisible = matchesText && matchesGender;
+                card.style.display = isVisible ? "inline-block" : "none";
+
+                if (isVisible) visibleCount++;
+            });
+
+            noResults.style.display = visibleCount === 0 ? "block" : "none";
+        }
+    </script>
+</body>
+
+</html>
