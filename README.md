@@ -17,6 +17,8 @@
 - [Stage 2 Report](#stage-2)
 - [Stage 3 Report](#stage-3)
 - [Stage 4 Report](#stage-4)
+- [Stage 5 Report](#stage-5)
+
 
 ---
 
@@ -1221,3 +1223,222 @@ VALUES (100, 5, 5);
 ### Output example
 
 ![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Proofs/p2.png) 
+
+---
+
+## Stage 5
+
+---
+
+## Table of Contents:
+1. [User Guide](#user-guide)
+2. [Procedures](#procedures)
+
+---
+
+## User Guide
+
+---
+
+Welcome to the **Sports App**! 
+
+This application allows you to view, manage, and explore information about athletes and matches in a clean and intuitive interface.
+
+---
+
+### Home Screen
+
+The home screen is the landing page of the app.
+
+It gives you a quick overview and easy access to the main sections: Athletes and Matches.
+
+Use the buttom navigation bar to move between sections.
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/1.png) 
+
+---
+
+### Athletes Screen
+
+This screen displays a list of all the athletes in the system.
+
+Each athlete card includes key details such as:
+
+Full name, Age, Gender, Country
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/2.png) 
+
+### Search & Filter Options
+
+At the top of the screen, you can filter athletes using several criteria:
+
+**Search by Name or Country:** Type into the search bar to instantly filter athletes by their full name or country.
+
+**Filter by Birth Month:** Select a month to see athletes who were born in that month.
+
+This feature uses a custom SQL query implemented in Stage 2 of the project.
+
+**Filter by Gender:** Choose to display - Only male athletes, Only female athletes Or all athletes (default).
+
+These filters can be combined to refine your results. 
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/18.png) 
+
+---
+
+### Athlete Profile Page
+
+This page provides a detailed view of a specific athlete’s information, including personal details and match history.
+
+It is designed for managers and coaches who have full access to view and edit athlete data.
+
+---
+
+**Page Layout & Functionality**
+
+**Back Button:** A button at the top-left corner returns to the full Athletes list.
+
+**Athlete Details (Header):** At the top of the page:
+
+The athlete's full name is displayed.
+
+If the athlete is a football player, a tag like "World Cup Football Player" is shown.
+
+The country or team name appears below.
+
+**Tabs**
+
+There are two tabs on the page:
+
+**Personal Info Tab (default open)**
+
+Displays the athlete’s personal and team information:
+
+Name, Gender, Birthdate, Country (or Team name if a football player)
+ 
+For football players only: Team name, Coach name, Home group, FIFA ranking
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/3.png) 
+
+---
+
+**Edit Athlete Info**
+
+Managers and coaches can click the green edit button to open a modal popup.
+
+You can update the athlete’s name, gender, birthdate, and country.
+
+Changes are saved with a POST request to /athlete/update/{{ athlete.id }}.
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/5.png) 
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/6.png) 
+
+---
+
+**Delete Athlete**
+
+A red delete button allows permanent removal of the athlete.
+
+Deletion is confirmed via popup. After deleting an athlete you get back to all athletes.
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/10.png) 
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/11.png) 
+
+---
+
+**Matches Tab**
+
+Lists all matches the athlete has participated in.
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/9.png) 
+
+If the athlete is a football player, the system also displays:
+
+Total number of goals - that is implemented with one of our functions from stage 4.
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/19.png) 
+
+Match details including:
+
+Date, Sport, Competition, Stage, Venue, Tickets Sold, Ticket Price
+
+🔽 Expand Match Details 
+Clicking a row shows detailed results and participants:
+
+For team sports:
+
+Lists each team, coach, scores, and the winner or **Draw**.
+
+For individual sports:
+
+Lists all competing athletes with:
+
+Name, Country, Rank, and Medal
+
+Winner is shown at the bottom
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/4.png) 
+
+---
+
+**Assign Medal**
+
+If the viewed athlete participated in an individual match:
+
+You can assign or change the current athlete`s medal using a dropdown.
+
+Options: Gold, Silver, Bronze
+
+Submit via POST to /athlete/assign_medal/{{ athlete.id }} with the match ID.
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/7.png) 
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/8.png) 
+
+---
+
+### 🏟️ Matches
+
+- View all scheduled and completed matches
+- Filter matches by:
+  - Date
+  - Teams
+  - Match outcome
+
+### ✏️ Add / Edit Data
+
+*Available based on your user permissions.*
+
+- Use the **Add Athlete** or **Add Match** buttons to insert new data
+- Click the **✏️ Edit** icon next to an entry to update existing information
+
+---
+
+## 🔎 Navigation
+
+- Use the **top menu** to switch between:
+  - Home
+  - Athletes
+  - Matches
+- Use the **search bar** to quickly find names or keywords
+
+---
+
+## 📸 Screenshots
+
+Refer to the included screenshots (in the `screan_shots` folder) to see examples of each screen.
+
+---
+
+## 🆘 Help & Support
+
+If you have questions or encounter problems:
+
+- Contact your system administrator
+- Or email: `support@example.com`
+
+---
+
+Enjoy the app!
