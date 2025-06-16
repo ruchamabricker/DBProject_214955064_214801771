@@ -1232,7 +1232,7 @@ VALUES (100, 5, 5);
 
 ## Table of Contents:
 1. [User Guide](#user-guide)
-2. [Procedures](#procedures)
+2. [App Development](#app-development)
 
 ---
 
@@ -1391,7 +1391,9 @@ You can assign or change the current athlete`s medal using a dropdown.
 
 Options: Gold, Silver, Bronze
 
-Submit via POST to /athlete/assign_medal/{{ athlete.id }} with the match ID.
+Submit via POST to /athlete/assign_medal/{{ athlete.id }} with the match ID.  
+
+We did this with our procedure from stage 4.
 
 ![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/7.png) 
 
@@ -1399,46 +1401,222 @@ Submit via POST to /athlete/assign_medal/{{ athlete.id }} with the match ID.
 
 ---
 
-### 🏟️ Matches
+### Matches Page
 
-- View all scheduled and completed matches
-- Filter matches by:
-  - Date
-  - Teams
-  - Match outcome
+This page displays all the matches available in the system, each represented as a compact, clickable card. The goal is to present key match information at a glance, while allowing the user to click and explore full match details if needed.
 
-### ✏️ Add / Edit Data
+Each card includes:
 
-*Available based on your user permissions.*
+**Date:** The date the match took place or will take place.
 
-- Use the **Add Athlete** or **Add Match** buttons to insert new data
-- Click the **✏️ Edit** icon next to an entry to update existing information
+**Venue:** The name of the venue where the match was held or will be held.
 
----
+**Competition:** The name of the competition or tournament (e.g., World Cup Football, European Championship).
 
-## 🔎 Navigation
+**Stage:** The stage of the competition (e.g., "Group Stage", "Semi-Final", "Final").
 
-- Use the **top menu** to switch between:
-  - Home
-  - Athletes
-  - Matches
-- Use the **search bar** to quickly find names or keywords
+**Sport:** The type of sport (e.g., football, athletics, tennis).
+
+All this info is pulled dynamically using templating:
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/12.png) 
 
 ---
 
-## 📸 Screenshots
+### Match Details Page
 
-Refer to the included screenshots (in the `screan_shots` folder) to see examples of each screen.
+This page presents detailed information about a specific match or event. It's designed to help users view all relevant match data, team or athlete details, and even purchase tickets.
+
+Underneath the main title, the page displays structured data about the match:
+
+**Date:** The date the match takes place.
+
+**Venue:** The venue's name and capacity (number of seats available).
+
+**Venue ID:** An internal identifier used in the system.
+
+**Sport:** The sport being played (e.g., Football, Swimming).
+
+**Competition:** The competition name (e.g., "World Cup Football", "Olympics").
+
+**Stage:** The stage in the competition (e.g., Quarterfinal, Final).
+
+**Tickets Sold:** Number of tickets already sold for this match.
+
+**Ticket Price:** How much it costs to buy a ticket.
+
+### Team or Athlete Display (Based on Sport Type)
+
+The page dynamically adjusts based on whether the match is a team sport or an individual sport.
+
+If it’s a team sport:
+
+You’ll see a "Teams" section, listing all teams:
+
+Team name, Coach name, Score.
+
+The winning team is highlighted in green to indicate they won.
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/13.png) 
+
+### Ticket Purchase (Buy a Ticket)
+
+At the top center, there is a "Buy a ticket" button (green). Clicking this opens a modal window (a popup form) for purchasing a ticket.
+
+Inside the modal: You see the ticket price.
+
+Press "Purchase" to buy the ticket.
+
+Press "Cancel" to close the popup without purchasing.
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/14.png) 
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/15.png) 
+
+**You can see that now the number of tickets sold has increased from 6 to 7.**
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/16.png) 
 
 ---
 
-## 🆘 Help & Support
+### If it’s an individual sport:
 
-If you have questions or encounter problems:
+You’ll see an "Athletes" section:
 
-- Contact your system administrator
-- Or email: `support@example.com`
+Athlete name, Country, Rank
+
+Medal earned (Gold/Silver/Bronze/None)
+
+At the end, the winner’s name is shown clearly.
+
+![screen-shots](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%205/screan_shots/17.png) 
 
 ---
 
-Enjoy the app!
+### Back Navigation
+
+At the top-left of the page, a button allows the user to return to the Matches Page.
+
+---
+
+## App Development:
+
+### Tools & Process
+
+---
+
+## Flask + HTML + PostgreSQL App
+
+This web application was built using **Python** with **Flask** and **HTML**, connected to a **PostgreSQL** database via **pgAdmin**. The system supports full CRUD operations and executes SQL queries and stored procedures, as part of a full-stack academic project.
+
+---
+
+## 🔧 Technologies Used
+
+🐍 **Python** – Main backend language  
+
+🌐 **Flask** – Micro web framework for routing and logic  
+
+🖼️ **HTML + CSS** – User interface and styling  
+
+🐘 **PostgreSQL** – Relational database  
+
+🧰 **pgAdmin** – GUI for managing PostgreSQL  
+
+🔌 **SQLAlchemy** – For connecting Python to the database  
+
+⚙️ **JavaScript** – For frontend interactivity  
+
+---
+
+## Features and Workflow
+
+### 1. Database Structure
+
+At least **3 tables** in the database
+
+Includes a **junction table** linking two other tables
+
+All relationships implemented with foreign keys
+
+Stored procedures and functions were written in earlier stages
+
+### 2. Backend with Flask
+
+Flask handles server-side logic and routing
+
+SQL queries are executed using psycopg2
+
+Example route:
+  
+python
+  @app.route('/insert_user', methods=['GET', 'POST'])
+  def insert_user():
+      ...
+
+### 3. Frontend
+
+Built using HTML templates (Jinja2 engine)
+Each screen has its own form for user input
+Clean and minimal UI with custom styling using CSS
+
+### 4. CRUD Functionality
+
+Supports the four basic database operations on at least **3 tables**:
+
+**Create** – Buy a ticket to a match  
+**Read** – Display matches and athletes  
+**Update** – Edit the athlete's personal details or set their medal for a specific match 
+**Delete** – Delete a player or athlete
+
+### 5. SQL Queries & Procedures
+
+A dedicated screen allows:
+
+✅ Running **2 SQL queries** written in Stage 2 
+
+✅ Executing **2 stored procedures or functions** from Stage 4  
+
+### 6. UI/UX
+
+Clean, consistent layout with intuitive navigation  
+
+Styled forms, headers, and buttons for a pleasant user experience  
+
+---
+
+## Project Structure
+
+The project is organized into a main app directory that contains all application logic. Inside app, there is a routes folder for organizing different route files (e.g., home, athlete, and match-related routes), and a templates folder that holds all HTML files for rendering views. The db.py file handles database setup or connections. The root-level run.py script is used to start the application.
+
+---
+
+## Assignment Requirements Covered
+
+| Requirement                                                  | Completed |
+|--------------------------------------------------------------|-----------|
+| At least **5 GUI screens**                                   | ✅        |
+| Full **CRUD** for 3 database tables                          | ✅        |
+| **Junction table** between two related tables                | ✅        |
+| Run **2 SQL queries** from Stage 2                           | ✅        |
+| Run **2 stored procedures/functions** from Stage 4           | ✅        |
+| **Enter screen** with navigation to the system               | ✅        |
+| UI includes **basic styling and usability**                  | ✅        |
+
+---
+
+## Author Notes
+
+This project was created as part of a full-stack database assignment, combining backend development with database logic and user interface design.
+
+Feel free to explore the code, adapt it, or use it as a base for your own applications.
+
+---
+
+## Contact
+
+For questions, suggestions, or feedback — feel free to contact us through GitHub.
+
+https://github.com/michal359
+
+https://github.com/ruchamabricker
