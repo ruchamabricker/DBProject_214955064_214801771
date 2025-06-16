@@ -722,6 +722,7 @@ During the integration phase, the following decisions were made:
 
 Overall, the main changes are adding the missing entities and relationships from each model to the unified model, and creating new relationships between the corresponding or related entities from each of the original models to create a single linked network representing the information from both domains in a single system.
 
+see the integration file: [integration](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%203/integrations.sql)
 ---
 
 ## Workflow and Commands
@@ -913,6 +914,7 @@ ORDER BY total_stages DESC;
 2. [Procedures](#procedures)
 3. [Triggers](#triggers)
 4. [Main programs](#main-programs)
+5. [Proofs](#proofs)
 
 ---
 
@@ -1201,3 +1203,21 @@ $$;
 ### Output example
 
 ![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Main%20programs/m2.png) 
+
+---
+
+## Proofs
+
+---
+
+**Description**:
+This confirms that running this query correctly throws the expected exception.
+
+```sql
+INSERT INTO matches(match_id, team1_id, team2_id)
+VALUES (100, 5, 5);
+```
+
+### Output example
+
+![ERD](https://github.com/ruchamabricker/DBProject_214955064_214801771/blob/master/stage%204/Proofs/p2.png) 
