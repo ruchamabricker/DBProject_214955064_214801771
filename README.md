@@ -1125,7 +1125,6 @@ BEGIN
 EXCEPTION
     WHEN OTHERS THEN
         RAISE NOTICE 'Error in check_teams_different: %', SQLERRM;
-        RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
