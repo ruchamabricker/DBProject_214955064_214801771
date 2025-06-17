@@ -1579,8 +1579,6 @@ A dedicated screen allows:
 This query retrieves all athletes who were born in a specific month. If no month is given, it returns all athletes. It also calculates each athlete's age and includes the name of their country.
 
 ```sql
-Edit
--- Athletes born in a specific month (e.g., January):
 SELECT name, birth_date
 FROM Players
 WHERE EXTRACT(MONTH FROM birth_date) = 1;
