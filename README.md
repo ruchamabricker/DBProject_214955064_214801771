@@ -1569,13 +1569,152 @@ Supports the four basic database operations on at least **3 tables**:
 **Update** – Edit the athlete's personal details or set their medal for a specific match 
 **Delete** – Delete a player or athlete
 
-### 5. SQL Queries & Procedures
 
+### 5. SQL Queries & Procedures
 A dedicated screen allows:
 
-✅ Running **2 SQL queries** written in Stage 2 
+✅ Running 2 SQL queries from stage 2
 
-✅ Executing **2 stored procedures or functions** from Stage 4  
+### Query 1: Athletes Born in a Given Month
+This query retrieves all athletes who were born in a specific month. If no month is given, it returns all athletes. It also calculates each athlete's age and includes the name of their country.
+
+```sql
+Edit
+-- Athletes born in a specific month (e.g., January):
+SELECT name, birth_date
+FROM Players
+WHERE EXTRACT(MONTH FROM birth_date) = 1;
+```
+### Query 2: Match Details and Contextual Information
+This SQL query retrieves full details about a specific match, including contextual information from related entities. It joins data across matches, venues, stages, competitions, and sports.
+
+Returned fields include:
+
+Match ID and date
+
+Venue name and capacity
+
+Sport, competition, and stage names
+
+Team IDs and scores (if it's a team-based match)
+
+A computed boolean field is_team_sport that checks whether the match is between two teams (based on team1_id)
+
+Full query (used inside match view route):
+
+```sql
+    SELECT m.match_id, m.match_date,
+        v.venue_name, v.capacity,
+        s.sport_name,
+        c.competition_name,
+        st.name as stage_name,
+        (CASE WHEN m.team1_id IS NOT NULL THEN TRUE ELSE FALSE END) as is_team_sport,
+        m.team1_id, m.team2_id,
+        m.score_team1, m.score_team2,
+        m.venue_id 
+    FROM matches m
+    LEFT JOIN venues v ON m.venue_id = v.venue_id
+    LEFT JOIN stages st ON m.stage_id = st.stage_id
+    LEFT JOIN competitions c ON st.competition_id = c.competition_id
+    LEFT JOIN sports s ON c.sport_id = s.sport_id
+    WHERE m.match_id = 402
+```
+This query enables displaying rich information about any given match, and is used in the route:
+/match/<match_id> or within athlete-related match views.
+
+✅ Executing 2 procedures or functions from stage 4
+
+### Procedure 1: assign_medal
+This stored procedure assigns a medal to an athlete in a specific match. If the athlete is already registered for the match in athlete_match, it updates the medal. Otherwise, it inserts a new entry.
+
+```sql
+CREATE OR REPLACE PROCEDURE assign_medal(
+    ath_id INTEGER,
+    match_id_in INTEGER,
+    medal_type VARCHAR
+)
+AS $$
+DECLARE
+    exists_record BOOLEAN;
+BEGIN
+    SELECT EXISTS (
+        SELECT 1
+        FROM athlete_match
+        WHERE athlete_id = ath_id AND match_id = match_id_in
+    )
+    INTO exists_record;
+
+    IF exists_record THEN
+        UPDATE athlete_match
+        SET medal = medal_type
+        WHERE athlete_id = ath_id AND match_id = match_id_in;
+    ELSE
+        INSERT INTO athlete_match(athlete_id, match_id, medal, athlete_rank, is_substitute)
+        VALUES (ath_id, match_id_in, medal_type, NULL, FALSE);
+    END IF;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in assign_medal: %', SQLERRM;
+END;
+$$ LANGUAGE plpgsql;
+Called from Flask route:
+```
+
+```python
+@athlete_bp.route('/assign_medal/<int:athlete_id>', methods=['POST'])
+def assign_medal(athlete_id):
+    match_id = request.form.get('match_id')
+    medal = request.form.get('medal')
+
+    conn = connect_db()
+    if not conn:
+        return "DB connection failed", 500
+    cur = conn.cursor()
+
+    cur.execute("CALL assign_medal(%s, %s, %s)", (athlete_id, match_id, medal))
+    conn.commit()
+    cur.close()
+    conn.close()
+    return render_template(
+        "message.html",
+        title="Medal Assigned",
+        message=f"The medal '{medal}' has been assigned successfully.",
+        redirect_url=url_for("athlete.athlete_profile", athlete_id=athlete_id),
+        delay=2
+    )
+```
+
+### Function 1: get_total_goals
+This function returns the total number of goals scored by a given athlete across all teams they played in. If the athlete has no goals, it returns 0.
+
+```sql
+CREATE OR REPLACE FUNCTION get_total_goals(ath_id INTEGER)
+RETURNS INTEGER AS $$
+DECLARE
+    total_goals INTEGER;
+BEGIN
+    SELECT COALESCE(SUM(goals), 0)
+    INTO total_goals
+    FROM players
+    WHERE athlete_id = ath_id;
+
+    RETURN total_goals;
+
+EXCEPTION
+    WHEN OTHERS THEN
+        RAISE NOTICE 'Error in get_total_goals: %', SQLERRM;
+        RETURN 0;
+END;
+$$ LANGUAGE plpgsql;
+```
+Called from Flask code (inside athlete profile view):
+
+```python
+cur.execute("SELECT get_total_goals(%s);", (athlete_id,))
+athlete['total_goals'] = cur.fetchone()[0]
+```
+
 
 ### 6. UI/UX
 
