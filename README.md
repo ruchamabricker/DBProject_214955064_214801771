@@ -1091,7 +1091,6 @@ BEGIN
 EXCEPTION
     WHEN OTHERS THEN
         RAISE NOTICE 'Error in update_country_medals: %', SQLERRM;
-        RETURN NEW;
 END;
 $$ LANGUAGE plpgsql;
 
